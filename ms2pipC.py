@@ -369,16 +369,10 @@ def process_peptides(worker_num,args,data,PTMmap,Ntermmap,Ctermmap,fragmethod):
 		tmp['prediction'] = resultB + resultY
 		tmp['spec_id'] = [pepid]*len(tmp)
 		final_result = final_result.append(tmp)
-<<<<<<< HEAD
 		pcount += 1
 		if (pcount % 500) == 0:
 			sys.stderr.write('w' + str(worker_num) + '(' + str(pcount) + ') ')
-=======
-		sp_count+=1
-		if int(((1.0 * sp_count)/total) * 100) % 20 == 0:
-			sys.stderr.write('w' + str(worker_num) + '( ' + str(sp_count) + ') ')
 
->>>>>>> Modified correlations output
 	return final_result
 
 # peak intensity prediction with spectrum file (for evaluation) OR feature extraction
@@ -413,17 +407,9 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 	dataresult['charge'] = dataresult['charge'].astype(np.uint8)
 	dataresult['ion'] = dataresult['ion'].astype(np.uint8)
 	dataresult['ionnumber'] = dataresult['ionnumber'].astype(np.uint8)
-<<<<<<< HEAD
 	dataresult['target'] = dataresult['target'].astype(np.float32)
 	dataresult['prediction'] = dataresult['prediction'].astype(np.float32)
 
-	sys.stderr.write('here')
-
-=======
-	dataresult['target'] = dataresult['target'].astype(np.float32)
-	dataresult['prediction'] = dataresult['prediction'].astype(np.float32)
-
->>>>>>> Modified correlations output
 	title = ""
 	charge = 0
 	msms = []
