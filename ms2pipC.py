@@ -18,7 +18,7 @@ masses = [71.037114,103.00919,115.026943,129.042593,147.068414,57.021464,137.058
 a_map = {}
 for i,a in enumerate(aminos):
 	a_map[a] = i
-		
+
 def main():
 
 	parser = argparse.ArgumentParser()
@@ -42,7 +42,7 @@ def main():
 		exit(1)
 
 	num_cpu = int(args.num_cpu)
-			
+
 	PTMmap = {}
 	Ntermmap = {}
 	Ctermmap = {}
@@ -101,8 +101,12 @@ def main():
 	else:
 		print "Unknown fragmentation method in configfile: %s"%fragmethod
 		exit(1)
-			
+
+	print "using %s models..."%fragmethod
+
 	ms2pipfeatures_pyx.ms2pip_init(fa.name)
+
+	output_name = args.pep_file.split(".")[0]
 
 	# read peptide information
 	# the file contains the following columns: spec_id, modifications, peptide and charge
@@ -190,14 +194,25 @@ def main():
 			all_spectra = pd.concat(all_spectra)
 
 			sys.stdout.write('writing file...\n')
-			all_spectra.to_csv(args.pep_file + '_pred_and_emp.csv', index=False)
 
-			#sys.stdout.write('computing correlations...\n')
-			#correlations = all_spectra.groupby('spec_id')[['target', 'prediction']].corr().ix[0::2,'prediction']			
-			#corr_boxplot = correlations.plot('box')
-			#corr_boxplot = corr_boxplot.get_figure()
-			#corr_boxplot.suptitle('Pearson corr for ' + args.spec_file + ' and predictions')
-			#corr_boxplot.savefig(args.pep_file + '_correlations.png')
+			all_spectra.to_csv(output_name + '_pred_and_emp.csv', index=False)
+
+			# output correlations to boxplots or csv file
+			make_corr_boxplots = False
+			make_corr_csv = True
+
+			if make_corr_boxplots or make_corr_csv:
+				sys.stdout.write('computing correlations...\n')
+				correlations = all_spectra.groupby('spec_id')[['target', 'prediction']].corr().ix[0::2,'prediction']
+
+			if make_corr_boxplots:
+				corr_boxplot = correlations.plot('box')
+				corr_boxplot = corr_boxplot.get_figure()
+				corr_boxplot.suptitle('Pearson corr for ' + args.spec_file + ' and predictions')
+				corr_boxplot.savefig(args.pep_file + '_correlations.png')
+
+			if make_corr_csv:
+				correlations.to_csv(output_name + '_correlations.csv', sep=" ")
 
 		sys.stdout.write('done! \n')
 
@@ -219,7 +234,7 @@ def main():
 		results = []
 		i = 0
 		for i in range(num_cpu-1):
-			#select titles for this worker			
+			#select titles for this worker
 			tmp = titles[i*num_pep_per_cpu:(i+1)*num_pep_per_cpu]
 			"""
 			process_peptides(i,args,data[data.spec_id.isin(tmp)],PTMmap,Ntermmap,Ctermmap,fragmethod)
@@ -354,9 +369,16 @@ def process_peptides(worker_num,args,data,PTMmap,Ntermmap,Ctermmap,fragmethod):
 		tmp['prediction'] = resultB + resultY
 		tmp['spec_id'] = [pepid]*len(tmp)
 		final_result = final_result.append(tmp)
+<<<<<<< HEAD
 		pcount += 1
 		if (pcount % 500) == 0:
 			sys.stderr.write('w' + str(worker_num) + '(' + str(pcount) + ') ')
+=======
+		sp_count+=1
+		if int(((1.0 * sp_count)/total) * 100) % 20 == 0:
+			sys.stderr.write('w' + str(worker_num) + '( ' + str(sp_count) + ') ')
+
+>>>>>>> Modified correlations output
 	return final_result
 
 # peak intensity prediction with spectrum file (for evaluation) OR feature extraction
@@ -382,20 +404,26 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 	modifications = specdict['modifications']
 
 	total = len(peptides)
-	
+
 	# cols contains the names of the computed features
 	cols_n = get_feature_names()
-	
+
 	dataresult = pd.DataFrame(columns=['spec_id','peplen','charge','ion','ionnumber','target','prediction'])
 	dataresult['peplen'] = dataresult['peplen'].astype(np.uint8)
 	dataresult['charge'] = dataresult['charge'].astype(np.uint8)
 	dataresult['ion'] = dataresult['ion'].astype(np.uint8)
 	dataresult['ionnumber'] = dataresult['ionnumber'].astype(np.uint8)
-	dataresult['target'] = dataresult['target'].astype(np.float32)					
-	dataresult['prediction'] = dataresult['prediction'].astype(np.float32)					
-		
+<<<<<<< HEAD
+	dataresult['target'] = dataresult['target'].astype(np.float32)
+	dataresult['prediction'] = dataresult['prediction'].astype(np.float32)
+
 	sys.stderr.write('here')
-		
+
+=======
+	dataresult['target'] = dataresult['target'].astype(np.float32)
+	dataresult['prediction'] = dataresult['prediction'].astype(np.float32)
+
+>>>>>>> Modified correlations output
 	title = ""
 	charge = 0
 	msms = []
@@ -514,7 +542,7 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 					for ii in range(len(resultY)):
 						resultY[ii] = resultY[ii]+0.5
 
-					tmp = pd.DataFrame()					
+					tmp = pd.DataFrame()
 					tmp['spec_id'] = [title]*(2*len(b))
 					tmp['peplen'] = [peplen]*(2*len(b))
 					tmp['charge'] = [charge]*(2*len(b))
@@ -526,10 +554,10 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 					tmp['charge'] = tmp['charge'].astype(np.uint8)
 					tmp['ion'] = tmp['ion'].astype(np.uint8)
 					tmp['ionnumber'] = tmp['ionnumber'].astype(np.uint8)
-					tmp['target'] = tmp['target'].astype(np.float32)					
-					tmp['prediction'] = tmp['prediction'].astype(np.float32)					
+					tmp['target'] = tmp['target'].astype(np.float32)
+					tmp['prediction'] = tmp['prediction'].astype(np.float32)
 					dataresult = dataresult.append(tmp,ignore_index=True)
-								
+
 				pcount += 1
 				if (pcount % 500) == 0:
 					sys.stderr.write('w' + str(worker_num) + '(' + str(pcount) + ') ')
