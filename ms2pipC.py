@@ -133,7 +133,7 @@ def main():
 
 		sys.stdout.write('starting workers...\n')
 
-		myPool = multiprocessing.Pool(num_cpu)
+		#myPool = multiprocessing.Pool(num_cpu)
 
 		results = []
 		i = 0
