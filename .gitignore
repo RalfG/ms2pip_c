@@ -1,4 +1,6 @@
 data/
+ms2pipfeatures_pyx.c
+ms2pipfeatures_pyx.so
 
 # Remote Sync for Atom
 .remote-sync.json
