@@ -18,9 +18,6 @@ print xgb.__version__
 
 import ms2pipfeatures_pyx_HCD
 
-import ms2pipfeatures_pyx
-
-
 def evalerror(preds, dtrain):
     labels = dtrain.get_label()
     return 'pearsonr', pearsonr(preds,labels)[0]
@@ -182,11 +179,6 @@ def main():
 	#tmp.to_pickle('predictions.pkl')
 	tmp.to_csv('predictions.csv',index=False)
 
-<<<<<<< HEAD
-
-=======
-
->>>>>>> Changes for training on synthetic phospho dataset
 	"""
 	for ch in range(8,20):
 		print "len %i" % ch
