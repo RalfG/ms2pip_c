@@ -182,7 +182,11 @@ def main():
 	#tmp.to_pickle('predictions.pkl')
 	tmp.to_csv('predictions.csv',index=False)
 
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> Changes for training on synthetic phospho dataset
 	"""
 	for ch in range(8,20):
 		print "len %i" % ch
