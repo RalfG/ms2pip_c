@@ -16,6 +16,8 @@ from scipy.stats import pearsonr
 
 print xgb.__version__
 
+import ms2pipfeatures_pyx_HCD
+
 import ms2pipfeatures_pyx
 
 
@@ -25,7 +27,7 @@ def evalerror(preds, dtrain):
 
 def main():
 
-	parser = argparse.ArgumentParser(description='XGBoost training')    
+	parser = argparse.ArgumentParser(description='XGBoost training')
 	parser.add_argument('vectors',metavar='<_vectors.pkl>',
 					 help='feature vector file')
 	parser.add_argument('type',metavar='<type>',
@@ -37,7 +39,7 @@ def main():
 	args = parser.parse_args()
 
 	sys.stderr.write('loading data\n')
- 
+
 	if args.vectors.split('.')[-1] == 'pkl':
 	  vectors = pd.read_pickle(args.vectors)
 	elif args.vectors.split('.')[-1] == 'h5':
@@ -52,20 +54,20 @@ def main():
 		  eval_vectors = pd.read_hdf(args.vectorseval, 'table')
 		else:
 		  print "unsuported feature vector format"
-	
-		
-	#vectors = vectors[vectors.charge==2]	
-	#eval_vectors = eval_vectors[eval_vectors.charge==2]	
-	#vectors = vectors[vectors.peplen==10]	
-	#eval_vectors = eval_vectors[eval_vectors.peplen==10]	
-	#vectors = vectors[vectors.ionnumber==5]	
-	#eval_vectors = eval_vectors[eval_vectors.ionnumber==5]	
+
+
+	#vectors = vectors[vectors.charge==2]
+	#eval_vectors = eval_vectors[eval_vectors.charge==2]
+	#vectors = vectors[vectors.peplen==10]
+	#eval_vectors = eval_vectors[eval_vectors.peplen==10]
+	#vectors = vectors[vectors.ionnumber==5]
+	#eval_vectors = eval_vectors[eval_vectors.ionnumber==5]
 
 	vectors = vectors.sample(4000000,replace=False)
 
 	print "%s contains %i feature vectors" % (args.vectors,len(vectors))
 	#print "%s contains %i feature vectors" % (args.vectorseval,len(eval_vectors))
-				
+
 	psmids = vectors["psmid"]
 	np.random.seed(1)
 	upeps = psmids.unique()
@@ -132,7 +134,7 @@ def main():
 	         "eta":1,
 	         #"max_delta_step":12,
 	         "max_depth":8,
-			 "gamma":1,	
+			 "gamma":1,
 			 "min_child_weight":700,
 			 "subsample":1,
 			 "colsample_bytree":1,
@@ -153,6 +155,8 @@ def main():
 
 	#bst = xgb.Booster({'nthread':23}) #init model
 	#bst.load_model(args.vectors+'.xgboost') # load data
+
+	convert_model_to_c(bst,args,numf)
 
 	#get feature importances
 	importance = bst.get_fscore()
@@ -178,9 +182,8 @@ def main():
 	#tmp.to_pickle('predictions.pkl')
 	tmp.to_csv('predictions.csv',index=False)
 
-	
-	convert_model_to_c(bst,args,numf)
 
+	"""
 	for ch in range(8,20):
 		print "len %i" % ch
 		n1 = 0
@@ -196,6 +199,7 @@ def main():
 			#print n1
 			n2+=1
 		print float(n1)/n2
+	"""
 
 	#plt.scatter(x=test_targets,y=predictions)
 	#plt.show()

@@ -3,8 +3,11 @@
 #include <string.h>
 
 
-#include "models/vectors_train_h5B_c.c"
-#include "models/vectors_train_h5Y_c.c"
+//#include "models/modelB_PDX.c"
+//#include "models/modelY_PDX.c"
+
+#include "models/modelBnew.c"
+#include "models/modelYnew.c"
 
 //#include "models/dB.c"
 //#include "models/dY.c"
