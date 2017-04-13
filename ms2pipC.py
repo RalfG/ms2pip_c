@@ -24,15 +24,21 @@ def main():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('pep_file', metavar='<peptide file>',
 					 help='list of peptides')
-	parser.add_argument('-c', metavar='FILE',action="store", dest='c',
+	parser.add_argument('-c', metavar='FILE', action="store", dest='c',
 					 help='config file')
-	parser.add_argument('-s', metavar='FILE',action="store", dest='spec_file',
+	parser.add_argument('-s', metavar='FILE', action="store", dest='spec_file',
 					 help='.mgf MS2 spectrum file (optional)')
-	parser.add_argument('-w', metavar='FILE',action="store", dest='vector_file',
+	parser.add_argument('-w', metavar='FILE', action="store", dest='vector_file',
 					 help='write feature vectors to FILE.pkl (optional)')
- 	parser.add_argument('-i', action="store_true", default=False, help='iTRAQ models')
- 	parser.add_argument('-p', action="store_true", default = False, help='phospho models')
-	parser.add_argument('-m', metavar='INT',action="store", dest='num_cpu',default='23',
+	parser.add_argument('-e', metavar='FLOAT', action="store", dest='fragerror', default=-1,
+					 help='fragmentation error')
+	parser.add_argument('-f', metavar='STRING', action="store", dest='fragmethod', default="None",
+					 help='fragmentation method')
+	parser.add_argument('-i', action="store_true", default=False,
+					 help='iTRAQ models')
+	parser.add_argument('-p', action="store_true", default = False,
+					 help='phospho models')
+	parser.add_argument('-m', metavar='INT', action="store", dest='num_cpu',default='23',
 					 help="number of cpu's to use")
 
 	args = parser.parse_args()
@@ -46,8 +52,6 @@ def main():
 	PTMmap = {}
 	Ntermmap = {}
 	Ctermmap = {}
-	fragmethod = "none" # CID or HCD
-	fragerror = 0
 	# reading the configfile (-c) and configure the ms2pipfeatures_pyx module's datastructures
 	fa = tempfile.NamedTemporaryFile(delete=False)
 	numptms = 0
@@ -84,6 +88,16 @@ def main():
 
 	fa.close()
 
+	#Get fragmethod and fragerror from arguments or configfile
+	if args.fragerror != -1:
+		fragerror = float(args.fragerror)
+		print "Using frag error %s from arguments"%str(fragerror)
+	else:
+		print "Using frag error %s from config file"%str(fragerror)
+
+	if args.fragmethod != "None":
+		fragmethod = args.fragmethod
+
 	if fragmethod == "CID":
 		import ms2pipfeatures_pyx_CID as ms2pipfeatures_pyx
 		print "using CID models..."
@@ -94,19 +108,23 @@ def main():
 				print "using HCD iTRAQ phospho models..."
 			else:
 				import ms2pipfeatures_pyx_HCDiTRAQ4 as ms2pipfeatures_pyx
-				print "using HCD iTRAQ pmodels..."
+				print "using HCD iTRAQ models..."
+		elif args.p:
+			import ms2pipfeatures_pyx_HCDphospho as ms2pipfeatures_pyx
+			print "using HCD phospho models..."
 		else:
 			import ms2pipfeatures_pyx_HCD as ms2pipfeatures_pyx
-			print "using HCD..."
+			print "using HCD models..."
 	else:
-		print "Unknown fragmentation method in configfile: %s"%fragmethod
+		print "Unknown fragmentation method in configfile or argument: %s"%fragmethod
 		exit(1)
+
 
 	print "using %s models..."%fragmethod
 
 	ms2pipfeatures_pyx.ms2pip_init(fa.name)
 
-	output_name = args.pep_file.split(".")[0]
+	output_name = args.pep_file.split(".")[-2]
 
 	# read peptide information
 	# the file contains the following columns: spec_id, modifications, peptide and charge
@@ -236,9 +254,10 @@ def main():
 		for i in range(num_cpu-1):
 			#select titles for this worker
 			tmp = titles[i*num_pep_per_cpu:(i+1)*num_pep_per_cpu]
-			"""
-			process_peptides(i,args,data[data.spec_id.isin(tmp)],PTMmap,Ntermmap,Ctermmap,fragmethod)
-			"""
+
+			# this commented part of code can be used for debugging by avoiding parallel processing
+			#process_peptides(i,args,data[data.spec_id.isin(tmp)],PTMmap,Ntermmap,Ctermmap,fragmethod)
+
 			results.append(myPool.apply_async(process_peptides,args=(
 										i,
 										args,
@@ -298,10 +317,12 @@ def process_peptides(worker_num,args,data,PTMmap,Ntermmap,Ctermmap,fragmethod):
 				import ms2pipfeatures_pyx_HCDiTRAQ4phospho as ms2pipfeatures_pyx
 			else:
 				import ms2pipfeatures_pyx_HCDiTRAQ4 as ms2pipfeatures_pyx
+		elif args.p:
+			import ms2pipfeatures_pyx_HCDphospho as ms2pipfeatures_pyx
 		else:
 			import ms2pipfeatures_pyx_HCD as ms2pipfeatures_pyx
 	else:
-		print "Unknown fragmentation method in configfile: %s"%fragmethod
+		print "Unknown fragmentation method in configfile or argument: %s"%fragmethod
 		exit(1)
 
 	# transform pandas datastructure into dictionary for easy access
@@ -386,10 +407,12 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 				import ms2pipfeatures_pyx_HCDiTRAQ4phospho as ms2pipfeatures_pyx
 			else:
 				import ms2pipfeatures_pyx_HCDiTRAQ4 as ms2pipfeatures_pyx
+		elif args.p:
+			import ms2pipfeatures_pyx_HCDphospho as ms2pipfeatures_pyx
 		else:
 			import ms2pipfeatures_pyx_HCD as ms2pipfeatures_pyx
 	else:
-		print "Unknown fragmentation method in configfile: %s"%fragmethod
+		print "Unknown fragmentation method in configfile or argument: %s"%fragmethod
 		exit(1)
 
 	# transform pandas datastructure into dictionary for easy access
