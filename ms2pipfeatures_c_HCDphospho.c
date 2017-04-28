@@ -5,8 +5,8 @@
 //#include "models/vectors_train_h5B_c.c"
 //#include "models/vectors_train_h5Y_c.c"
 
-#include "models/modelB_Phospho.c"
-#include "models/modelY_Phospho.c"
+#include "models/modelB_Phospho_AF3.c"
+#include "models/modelY_Phospho_AF3.c"
 
 //#include "models/modelBnew.c"
 //#include "models/modelYnew.c"
@@ -602,7 +602,7 @@ unsigned int* get_v_bof_chem(int peplen, unsigned short* peptide, int charge)
 }
 
 //compute feature vectors from peptide
-unsigned int* get_v(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge)
+unsigned int* get_v(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge, unsigned short* phosphoS_B, unsigned short* phosphoS_Y, unsigned short* phosphoT_B, unsigned short* phosphoT_Y, unsigned short* phosphoY_B, unsigned short* phosphoY_Y)
 	{
 	int i,j;
 	float mz;
@@ -1121,12 +1121,19 @@ unsigned int* get_v(int peplen, unsigned short* peptide, unsigned short* modpept
 		}
 
 		v[fnum++] = charge;
+
+		v[fnum++] = phosphoS_B[i];
+		v[fnum++] = phosphoS_Y[i];
+		v[fnum++] = phosphoT_B[i];
+		v[fnum++] = phosphoT_Y[i];
+		v[fnum++] = phosphoY_B[i];
+		v[fnum++] = phosphoY_Y[i];
 	}
 	return v;
 }
 
 //compute feature vector from peptide + predict intensities
-float* get_p(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge)
+float* get_p(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge, unsigned short* phosphoS_B, unsigned short* phosphoS_Y, unsigned short* phosphoT_B, unsigned short* phosphoT_Y, unsigned short* phosphoY_B, unsigned short* phosphoY_Y)
 	{
 	int i,j;
 	float mz;
@@ -1645,6 +1652,13 @@ float* get_p(int peplen, unsigned short* peptide, unsigned short* modpeptide, in
 		}
 
 		v[fnum++] = charge;
+
+		v[fnum++] = phosphoS_B[i];
+		v[fnum++] = phosphoS_Y[i];
+		v[fnum++] = phosphoT_B[i];
+		v[fnum++] = phosphoT_Y[i];
+		v[fnum++] = phosphoY_B[i];
+		v[fnum++] = phosphoY_Y[i];
 
 		predictions[i] = score_B(v);
 		predictions[2*(peplen-1)-i-1] = score_Y(v);

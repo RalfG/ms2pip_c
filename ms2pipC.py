@@ -125,6 +125,7 @@ def main():
 	ms2pipfeatures_pyx.ms2pip_init(fa.name)
 
 	output_name = args.pep_file.split(".")[-2]
+	print "Using output name: %s"%output_name
 
 	# read peptide information
 	# the file contains the following columns: spec_id, modifications, peptide and charge
@@ -161,7 +162,8 @@ def main():
 			# this commented part of code can be used for debugging by avoiding parallel processing
 			sys.stderr.write('ok')
 			#process_spectra(i,args, data[data.spec_id.isin(tmp)],PTMmap,Ntermmap,Ctermmap,fragmethod,fragerror)
-			#send worker to myPool
+
+			# send worker to myPool
 			results.append(myPool.apply_async(process_spectra,args=(
 										i,
 										args,
@@ -230,7 +232,7 @@ def main():
 				corr_boxplot.savefig(args.pep_file + '_correlations.png')
 
 			if make_corr_csv:
-				correlations.to_csv(output_name + '_correlations.csv', sep=" ")
+				correlations.to_csv(output_name + '_' + fragmethod + '_' + str(fragerror) + '_correlations.csv', sep=" ")
 
 		sys.stdout.write('done! \n')
 
@@ -325,6 +327,8 @@ def process_peptides(worker_num,args,data,PTMmap,Ntermmap,Ctermmap,fragmethod):
 		print "Unknown fragmentation method in configfile or argument: %s"%fragmethod
 		exit(1)
 
+	output_name = args.pep_file.split(".")[-2]
+
 	# transform pandas datastructure into dictionary for easy access
 	specdict = data[['spec_id','peptide','modifications','charge']].set_index('spec_id').to_dict()
 	peptides = specdict['peptide']
@@ -415,6 +419,8 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 		print "Unknown fragmentation method in configfile or argument: %s"%fragmethod
 		exit(1)
 
+	output_name = args.pep_file.split(".")[-2]
+
 	# transform pandas datastructure into dictionary for easy access
 	specdict = data[['spec_id','peptide','modifications']].set_index('spec_id').to_dict()
 	peptides = specdict['peptide']
@@ -423,7 +429,7 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 	total = len(peptides)
 
 	# cols contains the names of the computed features
-	cols_n = get_feature_names()
+	cols_n = get_feature_names(args)
 
 	dataresult = pd.DataFrame(columns=['spec_id','peplen','charge','ion','ionnumber','target','prediction'])
 	dataresult['peplen'] = dataresult['peplen'].astype(np.uint8)
@@ -516,7 +522,7 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 								modpeptide[int(l[i])-1] = PTMmap[tl[:-1]]
 
 				if args.i:
-					#remove reporter ionsi
+					#remove reporter ions
 					for mi,mp in enumerate(msms):
 						if (mp >= 113) & (mp <= 118):
 							peaks[mi]=0
@@ -532,20 +538,39 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 				(b,y,b2,y2) = ms2pipfeatures_pyx.get_targets(modpeptide,msms,peaks,nptm,cptm,fragerror)
 
 				#for debugging!!!!
-				#tmp = pd.DataFrame(ms2pipfeatures_pyx.get_vector(peptide,modpeptide,charge),columns=cols,dtype=np.uint32)
+				#tmp = pd.DataFrame(ms2pipfeatures_pyx.get_vector(peptide,modpeptide,charge),columns=cols_n,dtype=np.uint16)
 				#print bst.predict(xgb.DMatrix(tmp))
 
+				if args.p:
+					#Add features for Phospho
+					modpeptide_list = list(modpeptide)
+					phosphoS_B = np.asarray([modpeptide_list[:s].count(19) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
+					phosphoS_Y = np.asarray([modpeptide_list[s:].count(19) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
+					phosphoT_B = np.asarray([modpeptide_list[:s].count(20) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
+					phosphoT_Y = np.asarray([modpeptide_list[s:].count(20) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
+					phosphoY_B = np.asarray([modpeptide_list[:s].count(21) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
+					phosphoY_Y = np.asarray([modpeptide_list[s:].count(21) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
+
 				if args.vector_file:
-					tmp = pd.DataFrame(ms2pipfeatures_pyx.get_vector(peptide,modpeptide,charge),columns=cols_n,dtype=np.uint16)
+					if args.p:
+						tmp = pd.DataFrame(ms2pipfeatures_pyx.get_vector(peptide,modpeptide,charge,phosphoS_B,phosphoS_Y,phosphoT_B,phosphoT_Y,phosphoY_B,phosphoY_Y), columns=cols_n,dtype=np.uint16)
+					else:
+						tmp = pd.DataFrame(ms2pipfeatures_pyx.get_vector(peptide,modpeptide,charge), columns=cols_n,dtype=np.uint16)
+
 					tmp["psmid"] = [title]*len(tmp)
 					tmp["targetsB"] = b
 					tmp["targetsY"] = y[::-1]
 					tmp["targetsB2"] = b2
 					tmp["targetsY2"] = y2[::-1]
 					vectors.append(tmp)
+
 				else:
-					# predict the b- and y-ion intensities from the peptide
-					(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide,modpeptide,charge)
+					#predict the b- and y-ion intensities from the peptide
+					if args.p:
+						(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide,modpeptide,charge,phosphoS_B,phosphoS_Y,phosphoT_B,phosphoT_Y,phosphoY_B,phosphoY_Y)
+					else:
+						(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide,modpeptide,charge)
+
 					for ii in range(len(resultB)):
 						resultB[ii] = resultB[ii]+0.5 #This still needs to be checked!!!!!!!
 					for ii in range(len(resultY)):
@@ -572,12 +597,14 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 					sys.stderr.write('w' + str(worker_num) + '(' + str(pcount) + ') ')
 
 	if args.vector_file:
-		return pd.concat(vectors)
+		if total > 0:
+			pd.concat(vectors).to_csv(output_name + '_vectors.csv', '\t')
+			return pd.concat(vectors)
 	else:
 		return dataresult
 
 #feature names
-def get_feature_names():
+def get_feature_names(args):
 	aminos = ['A','C','D','E','F','G','H','I','K','M','N','P','Q','R','S','T','V','W','Y']
 
 	names = []
@@ -634,6 +661,9 @@ def get_feature_names():
 			names.append("loc_"+pos+"_"+c)
 
 	names.append("charge")
+
+	if args.p:
+		names.extend(['phosphoS_B','phosphoS_Y','phosphoT_B','phosphoT_Y','phosphoY_B','phosphoY_Y'])
 
 	return names
 

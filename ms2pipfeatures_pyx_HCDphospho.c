@@ -1437,6 +1437,12 @@ static const char __pyx_k_resultY[] = "resultY";
 static const char __pyx_k_ValueError[] = "ValueError";
 static const char __pyx_k_get_vector[] = "get_vector";
 static const char __pyx_k_modpeptide[] = "modpeptide";
+static const char __pyx_k_phosphoS_B[] = "phosphoS_B";
+static const char __pyx_k_phosphoS_Y[] = "phosphoS_Y";
+static const char __pyx_k_phosphoT_B[] = "phosphoT_B";
+static const char __pyx_k_phosphoT_Y[] = "phosphoT_Y";
+static const char __pyx_k_phosphoY_B[] = "phosphoY_B";
+static const char __pyx_k_phosphoY_Y[] = "phosphoY_Y";
 static const char __pyx_k_ImportError[] = "ImportError";
 static const char __pyx_k_get_targets[] = "get_targets";
 static const char __pyx_k_ms2pip_init[] = "ms2pip_init";
@@ -1490,6 +1496,12 @@ static PyObject *__pyx_kp_s_numpy_core_umath_failed_to_impor;
 static PyObject *__pyx_n_s_offset;
 static PyObject *__pyx_n_s_peaks;
 static PyObject *__pyx_n_s_peptide;
+static PyObject *__pyx_n_s_phosphoS_B;
+static PyObject *__pyx_n_s_phosphoS_Y;
+static PyObject *__pyx_n_s_phosphoT_B;
+static PyObject *__pyx_n_s_phosphoT_Y;
+static PyObject *__pyx_n_s_phosphoY_B;
+static PyObject *__pyx_n_s_phosphoY_Y;
 static PyObject *__pyx_n_s_plen;
 static PyObject *__pyx_n_s_pos;
 static PyObject *__pyx_n_s_predictions;
@@ -1506,11 +1518,11 @@ static PyObject *__pyx_n_s_v;
 static PyObject *__pyx_n_s_y;
 static PyObject *__pyx_n_s_y2;
 static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_ms2pip_init(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_amino_masses_fname); /* proto */
-static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, PyArrayObject *__pyx_v_modpeptide, PyObject *__pyx_v_charge); /* proto */
+static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, PyArrayObject *__pyx_v_modpeptide, PyObject *__pyx_v_charge, PyArrayObject *__pyx_v_phosphoS_B, PyArrayObject *__pyx_v_phosphoS_Y, PyArrayObject *__pyx_v_phosphoT_B, PyArrayObject *__pyx_v_phosphoT_Y, PyArrayObject *__pyx_v_phosphoY_B, PyArrayObject *__pyx_v_phosphoY_Y); /* proto */
 static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, int __pyx_v_charge); /* proto */
 static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_modpeptide, float __pyx_v_nptm, float __pyx_v_cptm); /* proto */
 static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_modpeptide, PyArrayObject *__pyx_v_msms, PyArrayObject *__pyx_v_peaks, float __pyx_v_nptm, float __pyx_v_cptm, float __pyx_v_tolmz); /* proto */
-static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, PyArrayObject *__pyx_v_modpeptide, PyObject *__pyx_v_charge); /* proto */
+static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, PyArrayObject *__pyx_v_modpeptide, PyObject *__pyx_v_charge, PyArrayObject *__pyx_v_phosphoS_B, PyArrayObject *__pyx_v_phosphoS_Y, PyArrayObject *__pyx_v_phosphoT_B, PyArrayObject *__pyx_v_phosphoT_Y, PyArrayObject *__pyx_v_phosphoY_B, PyArrayObject *__pyx_v_phosphoY_Y); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static PyObject *__pyx_tuple_;
@@ -1568,7 +1580,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_ms2pip_init(CYTHON_UNU
  * def ms2pip_init(amino_masses_fname):
  * 	init(amino_masses_fname)             # <<<<<<<<<<<<<<
  * 
- * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):
+ * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,
  */
   __pyx_t_1 = __Pyx_PyObject_AsString(__pyx_v_amino_masses_fname); if (unlikely((!__pyx_t_1) && PyErr_Occurred())) __PYX_ERR(0, 20, __pyx_L1_error)
   init(__pyx_t_1);
@@ -1596,9 +1608,9 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_ms2pip_init(CYTHON_UNU
 /* "ms2pipfeatures_pyx_HCDphospho.pyx":22
  * 	init(amino_masses_fname)
  * 
- * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):             # <<<<<<<<<<<<<<
- * 	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge)
- * 	cdef int i,j,offset
+ * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,             # <<<<<<<<<<<<<<
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
  */
 
 /* Python wrapper */
@@ -1608,16 +1620,28 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_3get_vector(PyObject *
   PyArrayObject *__pyx_v_peptide = 0;
   PyArrayObject *__pyx_v_modpeptide = 0;
   PyObject *__pyx_v_charge = 0;
+  PyArrayObject *__pyx_v_phosphoS_B = 0;
+  PyArrayObject *__pyx_v_phosphoS_Y = 0;
+  PyArrayObject *__pyx_v_phosphoT_B = 0;
+  PyArrayObject *__pyx_v_phosphoT_Y = 0;
+  PyArrayObject *__pyx_v_phosphoY_B = 0;
+  PyArrayObject *__pyx_v_phosphoY_Y = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_vector (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_peptide,&__pyx_n_s_modpeptide,&__pyx_n_s_charge,0};
-    PyObject* values[3] = {0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_peptide,&__pyx_n_s_modpeptide,&__pyx_n_s_charge,&__pyx_n_s_phosphoS_B,&__pyx_n_s_phosphoS_Y,&__pyx_n_s_phosphoT_B,&__pyx_n_s_phosphoT_Y,&__pyx_n_s_phosphoY_B,&__pyx_n_s_phosphoY_Y,0};
+    PyObject* values[9] = {0,0,0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  9: values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -1632,31 +1656,73 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_3get_vector(PyObject *
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_modpeptide)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 3, 3, 1); __PYX_ERR(0, 22, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, 1); __PYX_ERR(0, 22, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_charge)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 3, 3, 2); __PYX_ERR(0, 22, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, 2); __PYX_ERR(0, 22, __pyx_L3_error)
+        }
+        case  3:
+        if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoS_B)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, 3); __PYX_ERR(0, 22, __pyx_L3_error)
+        }
+        case  4:
+        if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoS_Y)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, 4); __PYX_ERR(0, 22, __pyx_L3_error)
+        }
+        case  5:
+        if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoT_B)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, 5); __PYX_ERR(0, 22, __pyx_L3_error)
+        }
+        case  6:
+        if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoT_Y)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, 6); __PYX_ERR(0, 22, __pyx_L3_error)
+        }
+        case  7:
+        if (likely((values[7] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoY_B)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, 7); __PYX_ERR(0, 22, __pyx_L3_error)
+        }
+        case  8:
+        if (likely((values[8] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoY_Y)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, 8); __PYX_ERR(0, 22, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_vector") < 0)) __PYX_ERR(0, 22, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 9) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+      values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+      values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
+      values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
     }
     __pyx_v_peptide = ((PyArrayObject *)values[0]);
     __pyx_v_modpeptide = ((PyArrayObject *)values[1]);
     __pyx_v_charge = values[2];
+    __pyx_v_phosphoS_B = ((PyArrayObject *)values[3]);
+    __pyx_v_phosphoS_Y = ((PyArrayObject *)values[4]);
+    __pyx_v_phosphoT_B = ((PyArrayObject *)values[5]);
+    __pyx_v_phosphoT_Y = ((PyArrayObject *)values[6]);
+    __pyx_v_phosphoY_B = ((PyArrayObject *)values[7]);
+    __pyx_v_phosphoY_Y = ((PyArrayObject *)values[8]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_vector", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 22, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_vector", 1, 9, 9, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 22, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ms2pipfeatures_pyx_HCDphospho.get_vector", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -1664,7 +1730,13 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_3get_vector(PyObject *
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_peptide), __pyx_ptype_5numpy_ndarray, 1, "peptide", 0))) __PYX_ERR(0, 22, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_modpeptide), __pyx_ptype_5numpy_ndarray, 1, "modpeptide", 0))) __PYX_ERR(0, 22, __pyx_L1_error)
-  __pyx_r = __pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(__pyx_self, __pyx_v_peptide, __pyx_v_modpeptide, __pyx_v_charge);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoS_B), __pyx_ptype_5numpy_ndarray, 1, "phosphoS_B", 0))) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoS_Y), __pyx_ptype_5numpy_ndarray, 1, "phosphoS_Y", 0))) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoT_B), __pyx_ptype_5numpy_ndarray, 1, "phosphoT_B", 0))) __PYX_ERR(0, 25, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoT_Y), __pyx_ptype_5numpy_ndarray, 1, "phosphoT_Y", 0))) __PYX_ERR(0, 26, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoY_B), __pyx_ptype_5numpy_ndarray, 1, "phosphoY_B", 0))) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoY_Y), __pyx_ptype_5numpy_ndarray, 1, "phosphoY_Y", 0))) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_r = __pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(__pyx_self, __pyx_v_peptide, __pyx_v_modpeptide, __pyx_v_charge, __pyx_v_phosphoS_B, __pyx_v_phosphoS_Y, __pyx_v_phosphoT_B, __pyx_v_phosphoT_Y, __pyx_v_phosphoY_B, __pyx_v_phosphoY_Y);
 
   /* function exit code */
   goto __pyx_L0;
@@ -1675,7 +1747,7 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_3get_vector(PyObject *
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, PyArrayObject *__pyx_v_modpeptide, PyObject *__pyx_v_charge) {
+static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, PyArrayObject *__pyx_v_modpeptide, PyObject *__pyx_v_charge, PyArrayObject *__pyx_v_phosphoS_B, PyArrayObject *__pyx_v_phosphoS_Y, PyArrayObject *__pyx_v_phosphoT_B, PyArrayObject *__pyx_v_phosphoT_Y, PyArrayObject *__pyx_v_phosphoY_B, PyArrayObject *__pyx_v_phosphoY_Y) {
   unsigned int *__pyx_v_result;
   CYTHON_UNUSED int __pyx_v_i;
   int __pyx_v_j;
@@ -1686,16 +1758,34 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
   __Pyx_Buffer __pyx_pybuffer_modpeptide;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_peptide;
   __Pyx_Buffer __pyx_pybuffer_peptide;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoS_B;
+  __Pyx_Buffer __pyx_pybuffer_phosphoS_B;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoS_Y;
+  __Pyx_Buffer __pyx_pybuffer_phosphoS_Y;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoT_B;
+  __Pyx_Buffer __pyx_pybuffer_phosphoT_B;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoT_Y;
+  __Pyx_Buffer __pyx_pybuffer_phosphoT_Y;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoY_B;
+  __Pyx_Buffer __pyx_pybuffer_phosphoY_B;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoY_Y;
+  __Pyx_Buffer __pyx_pybuffer_phosphoY_Y;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   Py_ssize_t __pyx_t_1;
   Py_ssize_t __pyx_t_2;
   int __pyx_t_3;
   Py_ssize_t __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  Py_ssize_t __pyx_t_6;
-  int __pyx_t_7;
-  int __pyx_t_8;
+  Py_ssize_t __pyx_t_5;
+  int __pyx_t_6;
+  Py_ssize_t __pyx_t_7;
+  Py_ssize_t __pyx_t_8;
+  Py_ssize_t __pyx_t_9;
+  Py_ssize_t __pyx_t_10;
+  Py_ssize_t __pyx_t_11;
+  PyObject *__pyx_t_12 = NULL;
+  Py_ssize_t __pyx_t_13;
+  int __pyx_t_14;
   __Pyx_RefNannySetupContext("get_vector", 0);
   __pyx_pybuffer_peptide.pybuffer.buf = NULL;
   __pyx_pybuffer_peptide.refcount = 0;
@@ -1705,6 +1795,30 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
   __pyx_pybuffer_modpeptide.refcount = 0;
   __pyx_pybuffernd_modpeptide.data = NULL;
   __pyx_pybuffernd_modpeptide.rcbuffer = &__pyx_pybuffer_modpeptide;
+  __pyx_pybuffer_phosphoS_B.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoS_B.refcount = 0;
+  __pyx_pybuffernd_phosphoS_B.data = NULL;
+  __pyx_pybuffernd_phosphoS_B.rcbuffer = &__pyx_pybuffer_phosphoS_B;
+  __pyx_pybuffer_phosphoS_Y.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoS_Y.refcount = 0;
+  __pyx_pybuffernd_phosphoS_Y.data = NULL;
+  __pyx_pybuffernd_phosphoS_Y.rcbuffer = &__pyx_pybuffer_phosphoS_Y;
+  __pyx_pybuffer_phosphoT_B.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoT_B.refcount = 0;
+  __pyx_pybuffernd_phosphoT_B.data = NULL;
+  __pyx_pybuffernd_phosphoT_B.rcbuffer = &__pyx_pybuffer_phosphoT_B;
+  __pyx_pybuffer_phosphoT_Y.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoT_Y.refcount = 0;
+  __pyx_pybuffernd_phosphoT_Y.data = NULL;
+  __pyx_pybuffernd_phosphoT_Y.rcbuffer = &__pyx_pybuffer_phosphoT_Y;
+  __pyx_pybuffer_phosphoY_B.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoY_B.refcount = 0;
+  __pyx_pybuffernd_phosphoY_B.data = NULL;
+  __pyx_pybuffernd_phosphoY_B.rcbuffer = &__pyx_pybuffer_phosphoY_B;
+  __pyx_pybuffer_phosphoY_Y.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoY_Y.refcount = 0;
+  __pyx_pybuffernd_phosphoY_Y.data = NULL;
+  __pyx_pybuffernd_phosphoY_Y.rcbuffer = &__pyx_pybuffer_phosphoY_Y;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_peptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
@@ -1715,15 +1829,45 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_modpeptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
   }
   __pyx_pybuffernd_modpeptide.diminfo[0].strides = __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_modpeptide.diminfo[0].shape = __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoS_B, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoS_B.diminfo[0].strides = __pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoS_B.diminfo[0].shape = __pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoS_Y, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoS_Y.diminfo[0].strides = __pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoS_Y.diminfo[0].shape = __pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoT_B, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoT_B.diminfo[0].strides = __pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoT_B.diminfo[0].shape = __pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoT_Y, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoT_Y.diminfo[0].strides = __pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoT_Y.diminfo[0].shape = __pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoY_B, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoY_B.diminfo[0].strides = __pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoY_B.diminfo[0].shape = __pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoY_Y, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 22, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoY_Y.diminfo[0].strides = __pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoY_Y.diminfo[0].shape = __pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer.shape[0];
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":23
- * 
- * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):
- * 	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge)             # <<<<<<<<<<<<<<
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":29
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_B,
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_Y):
+ * 	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge,&phosphoS_B[0],&phosphoS_Y[0],&phosphoT_B[0],&phosphoT_Y[0],&phosphoY_B[0],&phosphoY_Y[0])             # <<<<<<<<<<<<<<
  * 	cdef int i,j,offset
  * 	r = []
  */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 29, __pyx_L1_error)
   __pyx_t_2 = 0;
   __pyx_t_3 = -1;
   if (__pyx_t_2 < 0) {
@@ -1732,7 +1876,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
   } else if (unlikely(__pyx_t_2 >= __pyx_pybuffernd_peptide.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 23, __pyx_L1_error)
+    __PYX_ERR(0, 29, __pyx_L1_error)
   }
   __pyx_t_4 = 0;
   __pyx_t_3 = -1;
@@ -1742,24 +1886,84 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
   } else if (unlikely(__pyx_t_4 >= __pyx_pybuffernd_modpeptide.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 23, __pyx_L1_error)
+    __PYX_ERR(0, 29, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_charge); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L1_error)
-  __pyx_v_result = get_v(__pyx_t_1, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_peptide.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_peptide.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_modpeptide.diminfo[0].strides))), __pyx_t_3);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_charge); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L1_error)
+  __pyx_t_5 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_5 < 0) {
+    __pyx_t_5 += __pyx_pybuffernd_phosphoS_B.diminfo[0].shape;
+    if (unlikely(__pyx_t_5 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_5 >= __pyx_pybuffernd_phosphoS_B.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 29, __pyx_L1_error)
+  }
+  __pyx_t_7 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_7 < 0) {
+    __pyx_t_7 += __pyx_pybuffernd_phosphoS_Y.diminfo[0].shape;
+    if (unlikely(__pyx_t_7 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_7 >= __pyx_pybuffernd_phosphoS_Y.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 29, __pyx_L1_error)
+  }
+  __pyx_t_8 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_8 < 0) {
+    __pyx_t_8 += __pyx_pybuffernd_phosphoT_B.diminfo[0].shape;
+    if (unlikely(__pyx_t_8 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_8 >= __pyx_pybuffernd_phosphoT_B.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 29, __pyx_L1_error)
+  }
+  __pyx_t_9 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_9 < 0) {
+    __pyx_t_9 += __pyx_pybuffernd_phosphoT_Y.diminfo[0].shape;
+    if (unlikely(__pyx_t_9 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_9 >= __pyx_pybuffernd_phosphoT_Y.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 29, __pyx_L1_error)
+  }
+  __pyx_t_10 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_10 < 0) {
+    __pyx_t_10 += __pyx_pybuffernd_phosphoY_B.diminfo[0].shape;
+    if (unlikely(__pyx_t_10 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_10 >= __pyx_pybuffernd_phosphoY_B.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 29, __pyx_L1_error)
+  }
+  __pyx_t_11 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_11 < 0) {
+    __pyx_t_11 += __pyx_pybuffernd_phosphoY_Y.diminfo[0].shape;
+    if (unlikely(__pyx_t_11 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_11 >= __pyx_pybuffernd_phosphoY_Y.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 29, __pyx_L1_error)
+  }
+  __pyx_v_result = get_v(__pyx_t_1, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_peptide.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_peptide.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_modpeptide.diminfo[0].strides))), __pyx_t_3, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer.buf, __pyx_t_5, __pyx_pybuffernd_phosphoS_B.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer.buf, __pyx_t_7, __pyx_pybuffernd_phosphoS_Y.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_phosphoT_B.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_phosphoT_Y.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_phosphoY_B.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_phosphoY_Y.diminfo[0].strides))));
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":25
- * 	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge)
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":31
+ * 	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge,&phosphoS_B[0],&phosphoS_Y[0],&phosphoT_B[0],&phosphoT_Y[0],&phosphoY_B[0],&phosphoY_Y[0])
  * 	cdef int i,j,offset
  * 	r = []             # <<<<<<<<<<<<<<
  * 	offset = 0
  * 	for i in range(len(peptide)-1):
  */
-  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_v_r = ((PyObject*)__pyx_t_5);
-  __pyx_t_5 = 0;
+  __pyx_t_12 = PyList_New(0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_12);
+  __pyx_v_r = ((PyObject*)__pyx_t_12);
+  __pyx_t_12 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":26
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":32
  * 	cdef int i,j,offset
  * 	r = []
  * 	offset = 0             # <<<<<<<<<<<<<<
@@ -1768,74 +1972,74 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
  */
   __pyx_v_offset = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":27
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":33
  * 	r = []
  * 	offset = 0
  * 	for i in range(len(peptide)-1):             # <<<<<<<<<<<<<<
  * 		v = []
- * 		for j in range(186):
+ * 		for j in range(192):
  */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 27, __pyx_L1_error)
-  __pyx_t_6 = (__pyx_t_1 - 1);
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_6; __pyx_t_3+=1) {
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_13 = (__pyx_t_1 - 1);
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_13; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":28
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":34
  * 	offset = 0
  * 	for i in range(len(peptide)-1):
  * 		v = []             # <<<<<<<<<<<<<<
- * 		for j in range(186):
+ * 		for j in range(192):
  * 			v.append(result[j+offset])
  */
-    __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 28, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __Pyx_XDECREF_SET(__pyx_v_v, ((PyObject*)__pyx_t_5));
-    __pyx_t_5 = 0;
+    __pyx_t_12 = PyList_New(0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __Pyx_XDECREF_SET(__pyx_v_v, ((PyObject*)__pyx_t_12));
+    __pyx_t_12 = 0;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":29
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":35
  * 	for i in range(len(peptide)-1):
  * 		v = []
- * 		for j in range(186):             # <<<<<<<<<<<<<<
+ * 		for j in range(192):             # <<<<<<<<<<<<<<
  * 			v.append(result[j+offset])
- * 		offset+=186
+ * 		offset+=192
  */
-    for (__pyx_t_7 = 0; __pyx_t_7 < 0xBA; __pyx_t_7+=1) {
-      __pyx_v_j = __pyx_t_7;
+    for (__pyx_t_6 = 0; __pyx_t_6 < 0xC0; __pyx_t_6+=1) {
+      __pyx_v_j = __pyx_t_6;
 
-      /* "ms2pipfeatures_pyx_HCDphospho.pyx":30
+      /* "ms2pipfeatures_pyx_HCDphospho.pyx":36
  * 		v = []
- * 		for j in range(186):
+ * 		for j in range(192):
  * 			v.append(result[j+offset])             # <<<<<<<<<<<<<<
- * 		offset+=186
+ * 		offset+=192
  * 		r.append(v)
  */
-      __pyx_t_5 = __Pyx_PyInt_From_unsigned_int((__pyx_v_result[(__pyx_v_j + __pyx_v_offset)])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 30, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_v, __pyx_t_5); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 30, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __pyx_t_12 = __Pyx_PyInt_From_unsigned_int((__pyx_v_result[(__pyx_v_j + __pyx_v_offset)])); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 36, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_12);
+      __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_v, __pyx_t_12); if (unlikely(__pyx_t_14 == -1)) __PYX_ERR(0, 36, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     }
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":31
- * 		for j in range(186):
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":37
+ * 		for j in range(192):
  * 			v.append(result[j+offset])
- * 		offset+=186             # <<<<<<<<<<<<<<
+ * 		offset+=192             # <<<<<<<<<<<<<<
  * 		r.append(v)
  * 	return r
  */
-    __pyx_v_offset = (__pyx_v_offset + 0xBA);
+    __pyx_v_offset = (__pyx_v_offset + 0xC0);
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":32
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":38
  * 			v.append(result[j+offset])
- * 		offset+=186
+ * 		offset+=192
  * 		r.append(v)             # <<<<<<<<<<<<<<
  * 	return r
  * 
  */
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_r, __pyx_v_v); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 32, __pyx_L1_error)
+    __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_r, __pyx_v_v); if (unlikely(__pyx_t_14 == -1)) __PYX_ERR(0, 38, __pyx_L1_error)
   }
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":33
- * 		offset+=186
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":39
+ * 		offset+=192
  * 		r.append(v)
  * 	return r             # <<<<<<<<<<<<<<
  * 
@@ -1849,20 +2053,26 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
   /* "ms2pipfeatures_pyx_HCDphospho.pyx":22
  * 	init(amino_masses_fname)
  * 
- * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):             # <<<<<<<<<<<<<<
- * 	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge)
- * 	cdef int i,j,offset
+ * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,             # <<<<<<<<<<<<<<
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
  */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_12);
   { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
     __Pyx_PyThreadState_declare
     __Pyx_PyThreadState_assign
     __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("ms2pipfeatures_pyx_HCDphospho.get_vector", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
@@ -1870,6 +2080,12 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer);
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer);
   __pyx_L2:;
   __Pyx_XDECREF(__pyx_v_r);
   __Pyx_XDECREF(__pyx_v_v);
@@ -1878,7 +2094,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_2get_vector(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "ms2pipfeatures_pyx_HCDphospho.pyx":35
+/* "ms2pipfeatures_pyx_HCDphospho.pyx":41
  * 	return r
  * 
  * def get_vector_bof_chem(np.ndarray[unsigned short, ndim=1, mode="c"] peptide, int charge):             # <<<<<<<<<<<<<<
@@ -1915,11 +2131,11 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_5get_vector_bof_chem(P
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_charge)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_vector_bof_chem", 1, 2, 2, 1); __PYX_ERR(0, 35, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_vector_bof_chem", 1, 2, 2, 1); __PYX_ERR(0, 41, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_vector_bof_chem") < 0)) __PYX_ERR(0, 35, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_vector_bof_chem") < 0)) __PYX_ERR(0, 41, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -1928,17 +2144,17 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_5get_vector_bof_chem(P
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
     }
     __pyx_v_peptide = ((PyArrayObject *)values[0]);
-    __pyx_v_charge = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_charge == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 35, __pyx_L3_error)
+    __pyx_v_charge = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_charge == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_vector_bof_chem", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 35, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_vector_bof_chem", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 41, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ms2pipfeatures_pyx_HCDphospho.get_vector_bof_chem", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_peptide), __pyx_ptype_5numpy_ndarray, 1, "peptide", 0))) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_peptide), __pyx_ptype_5numpy_ndarray, 1, "peptide", 0))) __PYX_ERR(0, 41, __pyx_L1_error)
   __pyx_r = __pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(__pyx_self, __pyx_v_peptide, __pyx_v_charge);
 
   /* function exit code */
@@ -1975,18 +2191,18 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(C
   __pyx_pybuffernd_peptide.rcbuffer = &__pyx_pybuffer_peptide;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_peptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_peptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 41, __pyx_L1_error)
   }
   __pyx_pybuffernd_peptide.diminfo[0].strides = __pyx_pybuffernd_peptide.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_peptide.diminfo[0].shape = __pyx_pybuffernd_peptide.rcbuffer->pybuffer.shape[0];
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":36
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":42
  * 
  * def get_vector_bof_chem(np.ndarray[unsigned short, ndim=1, mode="c"] peptide, int charge):
  * 	cdef unsigned int* result = get_v_bof_chem(len(peptide),&peptide[0],charge)             # <<<<<<<<<<<<<<
  * 	cdef int i,j,offset
  * 	r = []
  */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 42, __pyx_L1_error)
   __pyx_t_2 = 0;
   __pyx_t_3 = -1;
   if (__pyx_t_2 < 0) {
@@ -1995,23 +2211,23 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(C
   } else if (unlikely(__pyx_t_2 >= __pyx_pybuffernd_peptide.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 36, __pyx_L1_error)
+    __PYX_ERR(0, 42, __pyx_L1_error)
   }
   __pyx_v_result = get_v_bof_chem(__pyx_t_1, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_peptide.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_peptide.diminfo[0].strides))), __pyx_v_charge);
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":38
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":44
  * 	cdef unsigned int* result = get_v_bof_chem(len(peptide),&peptide[0],charge)
  * 	cdef int i,j,offset
  * 	r = []             # <<<<<<<<<<<<<<
  * 	offset = 0
  * 	for i in range(len(peptide)-1):
  */
-  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_r = ((PyObject*)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":39
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":45
  * 	cdef int i,j,offset
  * 	r = []
  * 	offset = 0             # <<<<<<<<<<<<<<
@@ -2020,31 +2236,31 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(C
  */
   __pyx_v_offset = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":40
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":46
  * 	r = []
  * 	offset = 0
  * 	for i in range(len(peptide)-1):             # <<<<<<<<<<<<<<
  * 		v = []
  * 		for j in range(128):
  */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __pyx_t_5 = (__pyx_t_1 - 1);
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_5; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":41
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":47
  * 	offset = 0
  * 	for i in range(len(peptide)-1):
  * 		v = []             # <<<<<<<<<<<<<<
  * 		for j in range(128):
  * 			v.append(result[j+offset])
  */
-    __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_XDECREF_SET(__pyx_v_v, ((PyObject*)__pyx_t_4));
     __pyx_t_4 = 0;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":42
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":48
  * 	for i in range(len(peptide)-1):
  * 		v = []
  * 		for j in range(128):             # <<<<<<<<<<<<<<
@@ -2054,20 +2270,20 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(C
     for (__pyx_t_6 = 0; __pyx_t_6 < 0x80; __pyx_t_6+=1) {
       __pyx_v_j = __pyx_t_6;
 
-      /* "ms2pipfeatures_pyx_HCDphospho.pyx":43
+      /* "ms2pipfeatures_pyx_HCDphospho.pyx":49
  * 		v = []
  * 		for j in range(128):
  * 			v.append(result[j+offset])             # <<<<<<<<<<<<<<
  * 		offset+=128
  * 		r.append(v)
  */
-      __pyx_t_4 = __Pyx_PyInt_From_unsigned_int((__pyx_v_result[(__pyx_v_j + __pyx_v_offset)])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyInt_From_unsigned_int((__pyx_v_result[(__pyx_v_j + __pyx_v_offset)])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_v, __pyx_t_4); if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 43, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_v, __pyx_t_4); if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 49, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":44
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":50
  * 		for j in range(128):
  * 			v.append(result[j+offset])
  * 		offset+=128             # <<<<<<<<<<<<<<
@@ -2076,17 +2292,17 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(C
  */
     __pyx_v_offset = (__pyx_v_offset + 0x80);
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":45
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":51
  * 			v.append(result[j+offset])
  * 		offset+=128
  * 		r.append(v)             # <<<<<<<<<<<<<<
  * 	return r
  * 
  */
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_r, __pyx_v_v); if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 45, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_r, __pyx_v_v); if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 51, __pyx_L1_error)
   }
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":46
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":52
  * 		offset+=128
  * 		r.append(v)
  * 	return r             # <<<<<<<<<<<<<<
@@ -2098,7 +2314,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(C
   __pyx_r = __pyx_v_r;
   goto __pyx_L0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":35
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":41
  * 	return r
  * 
  * def get_vector_bof_chem(np.ndarray[unsigned short, ndim=1, mode="c"] peptide, int charge):             # <<<<<<<<<<<<<<
@@ -2128,7 +2344,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_4get_vector_bof_chem(C
   return __pyx_r;
 }
 
-/* "ms2pipfeatures_pyx_HCDphospho.pyx":48
+/* "ms2pipfeatures_pyx_HCDphospho.pyx":54
  * 	return r
  * 
  * def get_mzs(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide,float nptm,float cptm):             # <<<<<<<<<<<<<<
@@ -2167,16 +2383,16 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_7get_mzs(PyObject *__p
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_nptm)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_mzs", 1, 3, 3, 1); __PYX_ERR(0, 48, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_mzs", 1, 3, 3, 1); __PYX_ERR(0, 54, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cptm)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_mzs", 1, 3, 3, 2); __PYX_ERR(0, 48, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_mzs", 1, 3, 3, 2); __PYX_ERR(0, 54, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_mzs") < 0)) __PYX_ERR(0, 48, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_mzs") < 0)) __PYX_ERR(0, 54, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2186,18 +2402,18 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_7get_mzs(PyObject *__p
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
     }
     __pyx_v_modpeptide = ((PyArrayObject *)values[0]);
-    __pyx_v_nptm = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_nptm == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L3_error)
-    __pyx_v_cptm = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v_cptm == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 48, __pyx_L3_error)
+    __pyx_v_nptm = __pyx_PyFloat_AsFloat(values[1]); if (unlikely((__pyx_v_nptm == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L3_error)
+    __pyx_v_cptm = __pyx_PyFloat_AsFloat(values[2]); if (unlikely((__pyx_v_cptm == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_mzs", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 48, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_mzs", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 54, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ms2pipfeatures_pyx_HCDphospho.get_mzs", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_modpeptide), __pyx_ptype_5numpy_ndarray, 1, "modpeptide", 0))) __PYX_ERR(0, 48, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_modpeptide), __pyx_ptype_5numpy_ndarray, 1, "modpeptide", 0))) __PYX_ERR(0, 54, __pyx_L1_error)
   __pyx_r = __pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(__pyx_self, __pyx_v_modpeptide, __pyx_v_nptm, __pyx_v_cptm);
 
   /* function exit code */
@@ -2232,11 +2448,11 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED
   __pyx_pybuffernd_modpeptide.rcbuffer = &__pyx_pybuffer_modpeptide;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_modpeptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 48, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_modpeptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 54, __pyx_L1_error)
   }
   __pyx_pybuffernd_modpeptide.diminfo[0].strides = __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_modpeptide.diminfo[0].shape = __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.shape[0];
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":49
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":55
  * 
  * def get_mzs(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide,float nptm,float cptm):
  * 	cdef int pos = 0             # <<<<<<<<<<<<<<
@@ -2245,14 +2461,14 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED
  */
   __pyx_v_pos = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":51
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":57
  * 	cdef int pos = 0
  * 	cdef int i
  * 	cdef float* result = get_mz(len(modpeptide), &modpeptide[0], nptm, cptm)             # <<<<<<<<<<<<<<
  * 	b = []
  * 	for i in range(len(modpeptide)-1):
  */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 57, __pyx_L1_error)
   __pyx_t_2 = 0;
   __pyx_t_3 = -1;
   if (__pyx_t_2 < 0) {
@@ -2261,47 +2477,47 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED
   } else if (unlikely(__pyx_t_2 >= __pyx_pybuffernd_modpeptide.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 51, __pyx_L1_error)
+    __PYX_ERR(0, 57, __pyx_L1_error)
   }
   __pyx_v_result = get_mz(__pyx_t_1, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_modpeptide.diminfo[0].strides))), __pyx_v_nptm, __pyx_v_cptm);
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":52
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":58
  * 	cdef int i
  * 	cdef float* result = get_mz(len(modpeptide), &modpeptide[0], nptm, cptm)
  * 	b = []             # <<<<<<<<<<<<<<
  * 	for i in range(len(modpeptide)-1):
  * 		b.append(result[pos])
  */
-  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_b = ((PyObject*)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":53
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":59
  * 	cdef float* result = get_mz(len(modpeptide), &modpeptide[0], nptm, cptm)
  * 	b = []
  * 	for i in range(len(modpeptide)-1):             # <<<<<<<<<<<<<<
  * 		b.append(result[pos])
  * 		pos += 1
  */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 59, __pyx_L1_error)
   __pyx_t_5 = (__pyx_t_1 - 1);
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_5; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":54
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":60
  * 	b = []
  * 	for i in range(len(modpeptide)-1):
  * 		b.append(result[pos])             # <<<<<<<<<<<<<<
  * 		pos += 1
  * 	y = []
  */
-    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_result[__pyx_v_pos])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_result[__pyx_v_pos])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_b, __pyx_t_4); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_b, __pyx_t_4); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 60, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":55
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":61
  * 	for i in range(len(modpeptide)-1):
  * 		b.append(result[pos])
  * 		pos += 1             # <<<<<<<<<<<<<<
@@ -2311,43 +2527,43 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED
     __pyx_v_pos = (__pyx_v_pos + 1);
   }
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":56
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":62
  * 		b.append(result[pos])
  * 		pos += 1
  * 	y = []             # <<<<<<<<<<<<<<
  * 	for i in range(len(modpeptide)-1):
  * 		y.append(result[pos])
  */
-  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_y = ((PyObject*)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":57
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":63
  * 		pos += 1
  * 	y = []
  * 	for i in range(len(modpeptide)-1):             # <<<<<<<<<<<<<<
  * 		y.append(result[pos])
  * 		pos+=1
  */
-  __pyx_t_5 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_5 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_5 == -1)) __PYX_ERR(0, 63, __pyx_L1_error)
   __pyx_t_1 = (__pyx_t_5 - 1);
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_1; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":58
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":64
  * 	y = []
  * 	for i in range(len(modpeptide)-1):
  * 		y.append(result[pos])             # <<<<<<<<<<<<<<
  * 		pos+=1
  * 	return(b,y)
  */
-    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_result[__pyx_v_pos])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 58, __pyx_L1_error)
+    __pyx_t_4 = PyFloat_FromDouble((__pyx_v_result[__pyx_v_pos])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 64, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_y, __pyx_t_4); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 58, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_y, __pyx_t_4); if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 64, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":59
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":65
  * 	for i in range(len(modpeptide)-1):
  * 		y.append(result[pos])
  * 		pos+=1             # <<<<<<<<<<<<<<
@@ -2357,7 +2573,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED
     __pyx_v_pos = (__pyx_v_pos + 1);
   }
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":60
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":66
  * 		y.append(result[pos])
  * 		pos+=1
  * 	return(b,y)             # <<<<<<<<<<<<<<
@@ -2365,7 +2581,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED
  * def get_targets(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, np.ndarray[float, ndim=1, mode="c"] msms, np.ndarray[float, ndim=1, mode="c"] peaks,float nptm,float cptm, float tolmz):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_v_b);
   __Pyx_GIVEREF(__pyx_v_b);
@@ -2377,7 +2593,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":48
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":54
  * 	return r
  * 
  * def get_mzs(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide,float nptm,float cptm):             # <<<<<<<<<<<<<<
@@ -2407,7 +2623,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_6get_mzs(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "ms2pipfeatures_pyx_HCDphospho.pyx":62
+/* "ms2pipfeatures_pyx_HCDphospho.pyx":68
  * 	return(b,y)
  * 
  * def get_targets(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, np.ndarray[float, ndim=1, mode="c"] msms, np.ndarray[float, ndim=1, mode="c"] peaks,float nptm,float cptm, float tolmz):             # <<<<<<<<<<<<<<
@@ -2452,31 +2668,31 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_9get_targets(PyObject 
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_msms)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 1); __PYX_ERR(0, 62, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 1); __PYX_ERR(0, 68, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_peaks)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 2); __PYX_ERR(0, 62, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 2); __PYX_ERR(0, 68, __pyx_L3_error)
         }
         case  3:
         if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_nptm)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 3); __PYX_ERR(0, 62, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 3); __PYX_ERR(0, 68, __pyx_L3_error)
         }
         case  4:
         if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_cptm)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 4); __PYX_ERR(0, 62, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 4); __PYX_ERR(0, 68, __pyx_L3_error)
         }
         case  5:
         if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_tolmz)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 5); __PYX_ERR(0, 62, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, 5); __PYX_ERR(0, 68, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_targets") < 0)) __PYX_ERR(0, 62, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_targets") < 0)) __PYX_ERR(0, 68, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
@@ -2491,21 +2707,21 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_9get_targets(PyObject 
     __pyx_v_modpeptide = ((PyArrayObject *)values[0]);
     __pyx_v_msms = ((PyArrayObject *)values[1]);
     __pyx_v_peaks = ((PyArrayObject *)values[2]);
-    __pyx_v_nptm = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_nptm == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 62, __pyx_L3_error)
-    __pyx_v_cptm = __pyx_PyFloat_AsFloat(values[4]); if (unlikely((__pyx_v_cptm == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 62, __pyx_L3_error)
-    __pyx_v_tolmz = __pyx_PyFloat_AsFloat(values[5]); if (unlikely((__pyx_v_tolmz == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 62, __pyx_L3_error)
+    __pyx_v_nptm = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_nptm == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 68, __pyx_L3_error)
+    __pyx_v_cptm = __pyx_PyFloat_AsFloat(values[4]); if (unlikely((__pyx_v_cptm == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 68, __pyx_L3_error)
+    __pyx_v_tolmz = __pyx_PyFloat_AsFloat(values[5]); if (unlikely((__pyx_v_tolmz == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 68, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 62, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_targets", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 68, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ms2pipfeatures_pyx_HCDphospho.get_targets", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_modpeptide), __pyx_ptype_5numpy_ndarray, 1, "modpeptide", 0))) __PYX_ERR(0, 62, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_msms), __pyx_ptype_5numpy_ndarray, 1, "msms", 0))) __PYX_ERR(0, 62, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_peaks), __pyx_ptype_5numpy_ndarray, 1, "peaks", 0))) __PYX_ERR(0, 62, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_modpeptide), __pyx_ptype_5numpy_ndarray, 1, "modpeptide", 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_msms), __pyx_ptype_5numpy_ndarray, 1, "msms", 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_peaks), __pyx_ptype_5numpy_ndarray, 1, "peaks", 0))) __PYX_ERR(0, 68, __pyx_L1_error)
   __pyx_r = __pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(__pyx_self, __pyx_v_modpeptide, __pyx_v_msms, __pyx_v_peaks, __pyx_v_nptm, __pyx_v_cptm, __pyx_v_tolmz);
 
   /* function exit code */
@@ -2556,31 +2772,31 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(CYTHON_UN
   __pyx_pybuffernd_peaks.rcbuffer = &__pyx_pybuffer_peaks;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_modpeptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 62, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_modpeptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 68, __pyx_L1_error)
   }
   __pyx_pybuffernd_modpeptide.diminfo[0].strides = __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_modpeptide.diminfo[0].shape = __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_msms.rcbuffer->pybuffer, (PyObject*)__pyx_v_msms, &__Pyx_TypeInfo_float, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 62, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_msms.rcbuffer->pybuffer, (PyObject*)__pyx_v_msms, &__Pyx_TypeInfo_float, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 68, __pyx_L1_error)
   }
   __pyx_pybuffernd_msms.diminfo[0].strides = __pyx_pybuffernd_msms.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_msms.diminfo[0].shape = __pyx_pybuffernd_msms.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_peaks.rcbuffer->pybuffer, (PyObject*)__pyx_v_peaks, &__Pyx_TypeInfo_float, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 62, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_peaks.rcbuffer->pybuffer, (PyObject*)__pyx_v_peaks, &__Pyx_TypeInfo_float, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 68, __pyx_L1_error)
   }
   __pyx_pybuffernd_peaks.diminfo[0].strides = __pyx_pybuffernd_peaks.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_peaks.diminfo[0].shape = __pyx_pybuffernd_peaks.rcbuffer->pybuffer.shape[0];
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":63
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":69
  * 
  * def get_targets(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, np.ndarray[float, ndim=1, mode="c"] msms, np.ndarray[float, ndim=1, mode="c"] peaks,float nptm,float cptm, float tolmz):
  * 	cdef int plen = len(modpeptide)             # <<<<<<<<<<<<<<
  * 	cdef float* result = get_t(plen,&modpeptide[0],len(peaks),&msms[0],&peaks[0],nptm,cptm,tolmz)
  * 	cdef int i
  */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 69, __pyx_L1_error)
   __pyx_v_plen = __pyx_t_1;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":64
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":70
  * def get_targets(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, np.ndarray[float, ndim=1, mode="c"] msms, np.ndarray[float, ndim=1, mode="c"] peaks,float nptm,float cptm, float tolmz):
  * 	cdef int plen = len(modpeptide)
  * 	cdef float* result = get_t(plen,&modpeptide[0],len(peaks),&msms[0],&peaks[0],nptm,cptm,tolmz)             # <<<<<<<<<<<<<<
@@ -2595,9 +2811,9 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(CYTHON_UN
   } else if (unlikely(__pyx_t_2 >= __pyx_pybuffernd_modpeptide.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 64, __pyx_L1_error)
+    __PYX_ERR(0, 70, __pyx_L1_error)
   }
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peaks)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_peaks)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 70, __pyx_L1_error)
   __pyx_t_4 = 0;
   __pyx_t_3 = -1;
   if (__pyx_t_4 < 0) {
@@ -2606,7 +2822,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(CYTHON_UN
   } else if (unlikely(__pyx_t_4 >= __pyx_pybuffernd_msms.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 64, __pyx_L1_error)
+    __PYX_ERR(0, 70, __pyx_L1_error)
   }
   __pyx_t_5 = 0;
   __pyx_t_3 = -1;
@@ -2616,131 +2832,131 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(CYTHON_UN
   } else if (unlikely(__pyx_t_5 >= __pyx_pybuffernd_peaks.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 64, __pyx_L1_error)
+    __PYX_ERR(0, 70, __pyx_L1_error)
   }
   __pyx_v_result = get_t(__pyx_v_plen, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_modpeptide.diminfo[0].strides))), __pyx_t_1, (&(*__Pyx_BufPtrCContig1d(float *, __pyx_pybuffernd_msms.rcbuffer->pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_msms.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(float *, __pyx_pybuffernd_peaks.rcbuffer->pybuffer.buf, __pyx_t_5, __pyx_pybuffernd_peaks.diminfo[0].strides))), __pyx_v_nptm, __pyx_v_cptm, __pyx_v_tolmz);
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":67
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":73
  * 	cdef int i
  * 
  * 	b = []             # <<<<<<<<<<<<<<
  * 	for i in range(plen-1):
  * 		b.append(result[i])
  */
-  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_v_b = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":68
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":74
  * 
  * 	b = []
  * 	for i in range(plen-1):             # <<<<<<<<<<<<<<
  * 		b.append(result[i])
  * 	y = []
- */
-  __pyx_t_7 = (__pyx_v_plen - 1);
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_7; __pyx_t_3+=1) {
-    __pyx_v_i = __pyx_t_3;
-
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":69
- * 	b = []
- * 	for i in range(plen-1):
- * 		b.append(result[i])             # <<<<<<<<<<<<<<
- * 	y = []
- * 	for i in range(plen-1):
- */
-    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_result[__pyx_v_i])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 69, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_b, __pyx_t_6); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 69, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  }
-
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":70
- * 	for i in range(plen-1):
- * 		b.append(result[i])
- * 	y = []             # <<<<<<<<<<<<<<
- * 	for i in range(plen-1):
- * 		y.append(result[(plen-1)+i])
- */
-  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_v_y = ((PyObject*)__pyx_t_6);
-  __pyx_t_6 = 0;
-
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":71
- * 		b.append(result[i])
- * 	y = []
- * 	for i in range(plen-1):             # <<<<<<<<<<<<<<
- * 		y.append(result[(plen-1)+i])
- * 	b2 = []
- */
-  __pyx_t_7 = (__pyx_v_plen - 1);
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_7; __pyx_t_3+=1) {
-    __pyx_v_i = __pyx_t_3;
-
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":72
- * 	y = []
- * 	for i in range(plen-1):
- * 		y.append(result[(plen-1)+i])             # <<<<<<<<<<<<<<
- * 	b2 = []
- * 	for i in range(plen-1):
- */
-    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_result[((__pyx_v_plen - 1) + __pyx_v_i)])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 72, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_y, __pyx_t_6); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 72, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  }
-
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":73
- * 	for i in range(plen-1):
- * 		y.append(result[(plen-1)+i])
- * 	b2 = []             # <<<<<<<<<<<<<<
- * 	for i in range(plen-1):
- * 		b2.append(result[2*(plen-1)+i])
- */
-  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 73, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_v_b2 = ((PyObject*)__pyx_t_6);
-  __pyx_t_6 = 0;
-
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":74
- * 		y.append(result[(plen-1)+i])
- * 	b2 = []
- * 	for i in range(plen-1):             # <<<<<<<<<<<<<<
- * 		b2.append(result[2*(plen-1)+i])
- * 	y2 = []
  */
   __pyx_t_7 = (__pyx_v_plen - 1);
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_7; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
     /* "ms2pipfeatures_pyx_HCDphospho.pyx":75
+ * 	b = []
+ * 	for i in range(plen-1):
+ * 		b.append(result[i])             # <<<<<<<<<<<<<<
+ * 	y = []
+ * 	for i in range(plen-1):
+ */
+    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_result[__pyx_v_i])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 75, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_b, __pyx_t_6); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 75, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  }
+
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":76
+ * 	for i in range(plen-1):
+ * 		b.append(result[i])
+ * 	y = []             # <<<<<<<<<<<<<<
+ * 	for i in range(plen-1):
+ * 		y.append(result[(plen-1)+i])
+ */
+  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_v_y = ((PyObject*)__pyx_t_6);
+  __pyx_t_6 = 0;
+
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":77
+ * 		b.append(result[i])
+ * 	y = []
+ * 	for i in range(plen-1):             # <<<<<<<<<<<<<<
+ * 		y.append(result[(plen-1)+i])
+ * 	b2 = []
+ */
+  __pyx_t_7 = (__pyx_v_plen - 1);
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_7; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
+
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":78
+ * 	y = []
+ * 	for i in range(plen-1):
+ * 		y.append(result[(plen-1)+i])             # <<<<<<<<<<<<<<
+ * 	b2 = []
+ * 	for i in range(plen-1):
+ */
+    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_result[((__pyx_v_plen - 1) + __pyx_v_i)])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 78, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_y, __pyx_t_6); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 78, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  }
+
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":79
+ * 	for i in range(plen-1):
+ * 		y.append(result[(plen-1)+i])
+ * 	b2 = []             # <<<<<<<<<<<<<<
+ * 	for i in range(plen-1):
+ * 		b2.append(result[2*(plen-1)+i])
+ */
+  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_v_b2 = ((PyObject*)__pyx_t_6);
+  __pyx_t_6 = 0;
+
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":80
+ * 		y.append(result[(plen-1)+i])
+ * 	b2 = []
+ * 	for i in range(plen-1):             # <<<<<<<<<<<<<<
+ * 		b2.append(result[2*(plen-1)+i])
+ * 	y2 = []
+ */
+  __pyx_t_7 = (__pyx_v_plen - 1);
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_7; __pyx_t_3+=1) {
+    __pyx_v_i = __pyx_t_3;
+
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":81
  * 	b2 = []
  * 	for i in range(plen-1):
  * 		b2.append(result[2*(plen-1)+i])             # <<<<<<<<<<<<<<
  * 	y2 = []
  * 	for i in range(plen-1):
  */
-    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_result[((2 * (__pyx_v_plen - 1)) + __pyx_v_i)])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 75, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_result[((2 * (__pyx_v_plen - 1)) + __pyx_v_i)])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 81, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_b2, __pyx_t_6); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 75, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_b2, __pyx_t_6); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":76
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":82
  * 	for i in range(plen-1):
  * 		b2.append(result[2*(plen-1)+i])
  * 	y2 = []             # <<<<<<<<<<<<<<
  * 	for i in range(plen-1):
  * 		y2.append(result[3*(plen-1)+i])
  */
-  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_v_y2 = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":77
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":83
  * 		b2.append(result[2*(plen-1)+i])
  * 	y2 = []
  * 	for i in range(plen-1):             # <<<<<<<<<<<<<<
@@ -2751,28 +2967,28 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(CYTHON_UN
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_7; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":78
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":84
  * 	y2 = []
  * 	for i in range(plen-1):
  * 		y2.append(result[3*(plen-1)+i])             # <<<<<<<<<<<<<<
  * 	return(b,y,b2,y2)
  * 
  */
-    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_result[((3 * (__pyx_v_plen - 1)) + __pyx_v_i)])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 78, __pyx_L1_error)
+    __pyx_t_6 = PyFloat_FromDouble((__pyx_v_result[((3 * (__pyx_v_plen - 1)) + __pyx_v_i)])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_y2, __pyx_t_6); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 78, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_y2, __pyx_t_6); if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 84, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":79
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":85
  * 	for i in range(plen-1):
  * 		y2.append(result[3*(plen-1)+i])
  * 	return(b,y,b2,y2)             # <<<<<<<<<<<<<<
  * 
- * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):
+ * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_v_b);
   __Pyx_GIVEREF(__pyx_v_b);
@@ -2790,7 +3006,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(CYTHON_UN
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":62
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":68
  * 	return(b,y)
  * 
  * def get_targets(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, np.ndarray[float, ndim=1, mode="c"] msms, np.ndarray[float, ndim=1, mode="c"] peaks,float nptm,float cptm, float tolmz):             # <<<<<<<<<<<<<<
@@ -2826,12 +3042,12 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_8get_targets(CYTHON_UN
   return __pyx_r;
 }
 
-/* "ms2pipfeatures_pyx_HCDphospho.pyx":81
+/* "ms2pipfeatures_pyx_HCDphospho.pyx":87
  * 	return(b,y,b2,y2)
  * 
- * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):             # <<<<<<<<<<<<<<
- * 	cdef int plen = len(modpeptide)
- * 	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge)
+ * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,             # <<<<<<<<<<<<<<
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
  */
 
 /* Python wrapper */
@@ -2841,16 +3057,28 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_11get_predictions(PyOb
   PyArrayObject *__pyx_v_peptide = 0;
   PyArrayObject *__pyx_v_modpeptide = 0;
   PyObject *__pyx_v_charge = 0;
+  PyArrayObject *__pyx_v_phosphoS_B = 0;
+  PyArrayObject *__pyx_v_phosphoS_Y = 0;
+  PyArrayObject *__pyx_v_phosphoT_B = 0;
+  PyArrayObject *__pyx_v_phosphoT_Y = 0;
+  PyArrayObject *__pyx_v_phosphoY_B = 0;
+  PyArrayObject *__pyx_v_phosphoY_Y = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("get_predictions (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_peptide,&__pyx_n_s_modpeptide,&__pyx_n_s_charge,0};
-    PyObject* values[3] = {0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_peptide,&__pyx_n_s_modpeptide,&__pyx_n_s_charge,&__pyx_n_s_phosphoS_B,&__pyx_n_s_phosphoS_Y,&__pyx_n_s_phosphoT_B,&__pyx_n_s_phosphoT_Y,&__pyx_n_s_phosphoY_B,&__pyx_n_s_phosphoY_Y,0};
+    PyObject* values[9] = {0,0,0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  9: values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+        case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
         case  3: values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
         case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
         case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -2865,39 +3093,87 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_11get_predictions(PyOb
         case  1:
         if (likely((values[1] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_modpeptide)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 3, 3, 1); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, 1); __PYX_ERR(0, 87, __pyx_L3_error)
         }
         case  2:
         if (likely((values[2] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_charge)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 3, 3, 2); __PYX_ERR(0, 81, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, 2); __PYX_ERR(0, 87, __pyx_L3_error)
+        }
+        case  3:
+        if (likely((values[3] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoS_B)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, 3); __PYX_ERR(0, 87, __pyx_L3_error)
+        }
+        case  4:
+        if (likely((values[4] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoS_Y)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, 4); __PYX_ERR(0, 87, __pyx_L3_error)
+        }
+        case  5:
+        if (likely((values[5] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoT_B)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, 5); __PYX_ERR(0, 87, __pyx_L3_error)
+        }
+        case  6:
+        if (likely((values[6] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoT_Y)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, 6); __PYX_ERR(0, 87, __pyx_L3_error)
+        }
+        case  7:
+        if (likely((values[7] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoY_B)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, 7); __PYX_ERR(0, 87, __pyx_L3_error)
+        }
+        case  8:
+        if (likely((values[8] = PyDict_GetItem(__pyx_kwds, __pyx_n_s_phosphoY_Y)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, 8); __PYX_ERR(0, 87, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_predictions") < 0)) __PYX_ERR(0, 81, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "get_predictions") < 0)) __PYX_ERR(0, 87, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 9) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
       values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
+      values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
+      values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+      values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+      values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
+      values[8] = PyTuple_GET_ITEM(__pyx_args, 8);
     }
     __pyx_v_peptide = ((PyArrayObject *)values[0]);
     __pyx_v_modpeptide = ((PyArrayObject *)values[1]);
     __pyx_v_charge = values[2];
+    __pyx_v_phosphoS_B = ((PyArrayObject *)values[3]);
+    __pyx_v_phosphoS_Y = ((PyArrayObject *)values[4]);
+    __pyx_v_phosphoT_B = ((PyArrayObject *)values[5]);
+    __pyx_v_phosphoT_Y = ((PyArrayObject *)values[6]);
+    __pyx_v_phosphoY_B = ((PyArrayObject *)values[7]);
+    __pyx_v_phosphoY_Y = ((PyArrayObject *)values[8]);
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 81, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_predictions", 1, 9, 9, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 87, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("ms2pipfeatures_pyx_HCDphospho.get_predictions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_peptide), __pyx_ptype_5numpy_ndarray, 1, "peptide", 0))) __PYX_ERR(0, 81, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_modpeptide), __pyx_ptype_5numpy_ndarray, 1, "modpeptide", 0))) __PYX_ERR(0, 81, __pyx_L1_error)
-  __pyx_r = __pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(__pyx_self, __pyx_v_peptide, __pyx_v_modpeptide, __pyx_v_charge);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_peptide), __pyx_ptype_5numpy_ndarray, 1, "peptide", 0))) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_modpeptide), __pyx_ptype_5numpy_ndarray, 1, "modpeptide", 0))) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoS_B), __pyx_ptype_5numpy_ndarray, 1, "phosphoS_B", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoS_Y), __pyx_ptype_5numpy_ndarray, 1, "phosphoS_Y", 0))) __PYX_ERR(0, 89, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoT_B), __pyx_ptype_5numpy_ndarray, 1, "phosphoT_B", 0))) __PYX_ERR(0, 90, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoT_Y), __pyx_ptype_5numpy_ndarray, 1, "phosphoT_Y", 0))) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoY_B), __pyx_ptype_5numpy_ndarray, 1, "phosphoY_B", 0))) __PYX_ERR(0, 92, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_phosphoY_Y), __pyx_ptype_5numpy_ndarray, 1, "phosphoY_Y", 0))) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_r = __pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(__pyx_self, __pyx_v_peptide, __pyx_v_modpeptide, __pyx_v_charge, __pyx_v_phosphoS_B, __pyx_v_phosphoS_Y, __pyx_v_phosphoT_B, __pyx_v_phosphoT_Y, __pyx_v_phosphoY_B, __pyx_v_phosphoY_Y);
 
   /* function exit code */
   goto __pyx_L0;
@@ -2908,7 +3184,7 @@ static PyObject *__pyx_pw_29ms2pipfeatures_pyx_HCDphospho_11get_predictions(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, PyArrayObject *__pyx_v_modpeptide, PyObject *__pyx_v_charge) {
+static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_peptide, PyArrayObject *__pyx_v_modpeptide, PyObject *__pyx_v_charge, PyArrayObject *__pyx_v_phosphoS_B, PyArrayObject *__pyx_v_phosphoS_Y, PyArrayObject *__pyx_v_phosphoT_B, PyArrayObject *__pyx_v_phosphoT_Y, PyArrayObject *__pyx_v_phosphoY_B, PyArrayObject *__pyx_v_phosphoY_Y) {
   int __pyx_v_plen;
   float *__pyx_v_predictions;
   int __pyx_v_i;
@@ -2918,15 +3194,34 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTH
   __Pyx_Buffer __pyx_pybuffer_modpeptide;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_peptide;
   __Pyx_Buffer __pyx_pybuffer_peptide;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoS_B;
+  __Pyx_Buffer __pyx_pybuffer_phosphoS_B;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoS_Y;
+  __Pyx_Buffer __pyx_pybuffer_phosphoS_Y;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoT_B;
+  __Pyx_Buffer __pyx_pybuffer_phosphoT_B;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoT_Y;
+  __Pyx_Buffer __pyx_pybuffer_phosphoT_Y;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoY_B;
+  __Pyx_Buffer __pyx_pybuffer_phosphoY_B;
+  __Pyx_LocalBuf_ND __pyx_pybuffernd_phosphoY_Y;
+  __Pyx_Buffer __pyx_pybuffer_phosphoY_Y;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   Py_ssize_t __pyx_t_1;
   Py_ssize_t __pyx_t_2;
   int __pyx_t_3;
   Py_ssize_t __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  long __pyx_t_6;
-  int __pyx_t_7;
+  Py_ssize_t __pyx_t_5;
+  int __pyx_t_6;
+  Py_ssize_t __pyx_t_7;
+  Py_ssize_t __pyx_t_8;
+  Py_ssize_t __pyx_t_9;
+  Py_ssize_t __pyx_t_10;
+  Py_ssize_t __pyx_t_11;
+  PyObject *__pyx_t_12 = NULL;
+  long __pyx_t_13;
+  int __pyx_t_14;
   __Pyx_RefNannySetupContext("get_predictions", 0);
   __pyx_pybuffer_peptide.pybuffer.buf = NULL;
   __pyx_pybuffer_peptide.refcount = 0;
@@ -2936,31 +3231,85 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTH
   __pyx_pybuffer_modpeptide.refcount = 0;
   __pyx_pybuffernd_modpeptide.data = NULL;
   __pyx_pybuffernd_modpeptide.rcbuffer = &__pyx_pybuffer_modpeptide;
+  __pyx_pybuffer_phosphoS_B.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoS_B.refcount = 0;
+  __pyx_pybuffernd_phosphoS_B.data = NULL;
+  __pyx_pybuffernd_phosphoS_B.rcbuffer = &__pyx_pybuffer_phosphoS_B;
+  __pyx_pybuffer_phosphoS_Y.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoS_Y.refcount = 0;
+  __pyx_pybuffernd_phosphoS_Y.data = NULL;
+  __pyx_pybuffernd_phosphoS_Y.rcbuffer = &__pyx_pybuffer_phosphoS_Y;
+  __pyx_pybuffer_phosphoT_B.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoT_B.refcount = 0;
+  __pyx_pybuffernd_phosphoT_B.data = NULL;
+  __pyx_pybuffernd_phosphoT_B.rcbuffer = &__pyx_pybuffer_phosphoT_B;
+  __pyx_pybuffer_phosphoT_Y.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoT_Y.refcount = 0;
+  __pyx_pybuffernd_phosphoT_Y.data = NULL;
+  __pyx_pybuffernd_phosphoT_Y.rcbuffer = &__pyx_pybuffer_phosphoT_Y;
+  __pyx_pybuffer_phosphoY_B.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoY_B.refcount = 0;
+  __pyx_pybuffernd_phosphoY_B.data = NULL;
+  __pyx_pybuffernd_phosphoY_B.rcbuffer = &__pyx_pybuffer_phosphoY_B;
+  __pyx_pybuffer_phosphoY_Y.pybuffer.buf = NULL;
+  __pyx_pybuffer_phosphoY_Y.refcount = 0;
+  __pyx_pybuffernd_phosphoY_Y.data = NULL;
+  __pyx_pybuffernd_phosphoY_Y.rcbuffer = &__pyx_pybuffer_phosphoY_Y;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_peptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_peptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
   }
   __pyx_pybuffernd_peptide.diminfo[0].strides = __pyx_pybuffernd_peptide.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_peptide.diminfo[0].shape = __pyx_pybuffernd_peptide.rcbuffer->pybuffer.shape[0];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_modpeptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 81, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer, (PyObject*)__pyx_v_modpeptide, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
   }
   __pyx_pybuffernd_modpeptide.diminfo[0].strides = __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_modpeptide.diminfo[0].shape = __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoS_B, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoS_B.diminfo[0].strides = __pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoS_B.diminfo[0].shape = __pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoS_Y, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoS_Y.diminfo[0].strides = __pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoS_Y.diminfo[0].shape = __pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoT_B, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoT_B.diminfo[0].strides = __pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoT_B.diminfo[0].shape = __pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoT_Y, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoT_Y.diminfo[0].strides = __pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoT_Y.diminfo[0].shape = __pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoY_B, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoY_B.diminfo[0].strides = __pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoY_B.diminfo[0].shape = __pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer.shape[0];
+  {
+    __Pyx_BufFmt_StackElem __pyx_stack[1];
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer, (PyObject*)__pyx_v_phosphoY_Y, &__Pyx_TypeInfo_unsigned_short, PyBUF_FORMAT| PyBUF_C_CONTIGUOUS, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  }
+  __pyx_pybuffernd_phosphoY_Y.diminfo[0].strides = __pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_phosphoY_Y.diminfo[0].shape = __pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer.shape[0];
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":82
- * 
- * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":94
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_B,
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_Y):
  * 	cdef int plen = len(modpeptide)             # <<<<<<<<<<<<<<
- * 	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge)
+ * 	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge,&phosphoS_B[0],&phosphoS_Y[0],&phosphoT_B[0],&phosphoT_Y[0],&phosphoY_B[0],&phosphoY_Y[0])
  * 	cdef int i
  */
-  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_v_modpeptide)); if (unlikely(__pyx_t_1 == -1)) __PYX_ERR(0, 94, __pyx_L1_error)
   __pyx_v_plen = __pyx_t_1;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":83
- * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":95
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_Y):
  * 	cdef int plen = len(modpeptide)
- * 	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge)             # <<<<<<<<<<<<<<
+ * 	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge,&phosphoS_B[0],&phosphoS_Y[0],&phosphoT_B[0],&phosphoT_Y[0],&phosphoY_B[0],&phosphoY_Y[0])             # <<<<<<<<<<<<<<
  * 	cdef int i
  * 
  */
@@ -2972,7 +3321,7 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTH
   } else if (unlikely(__pyx_t_2 >= __pyx_pybuffernd_peptide.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 83, __pyx_L1_error)
+    __PYX_ERR(0, 95, __pyx_L1_error)
   }
   __pyx_t_4 = 0;
   __pyx_t_3 = -1;
@@ -2982,117 +3331,183 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTH
   } else if (unlikely(__pyx_t_4 >= __pyx_pybuffernd_modpeptide.diminfo[0].shape)) __pyx_t_3 = 0;
   if (unlikely(__pyx_t_3 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_3);
-    __PYX_ERR(0, 83, __pyx_L1_error)
+    __PYX_ERR(0, 95, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_charge); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L1_error)
-  __pyx_v_predictions = get_p(__pyx_v_plen, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_peptide.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_peptide.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_modpeptide.diminfo[0].strides))), __pyx_t_3);
+  __pyx_t_3 = __Pyx_PyInt_As_int(__pyx_v_charge); if (unlikely((__pyx_t_3 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_5 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_5 < 0) {
+    __pyx_t_5 += __pyx_pybuffernd_phosphoS_B.diminfo[0].shape;
+    if (unlikely(__pyx_t_5 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_5 >= __pyx_pybuffernd_phosphoS_B.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 95, __pyx_L1_error)
+  }
+  __pyx_t_7 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_7 < 0) {
+    __pyx_t_7 += __pyx_pybuffernd_phosphoS_Y.diminfo[0].shape;
+    if (unlikely(__pyx_t_7 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_7 >= __pyx_pybuffernd_phosphoS_Y.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 95, __pyx_L1_error)
+  }
+  __pyx_t_8 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_8 < 0) {
+    __pyx_t_8 += __pyx_pybuffernd_phosphoT_B.diminfo[0].shape;
+    if (unlikely(__pyx_t_8 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_8 >= __pyx_pybuffernd_phosphoT_B.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 95, __pyx_L1_error)
+  }
+  __pyx_t_9 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_9 < 0) {
+    __pyx_t_9 += __pyx_pybuffernd_phosphoT_Y.diminfo[0].shape;
+    if (unlikely(__pyx_t_9 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_9 >= __pyx_pybuffernd_phosphoT_Y.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 95, __pyx_L1_error)
+  }
+  __pyx_t_10 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_10 < 0) {
+    __pyx_t_10 += __pyx_pybuffernd_phosphoY_B.diminfo[0].shape;
+    if (unlikely(__pyx_t_10 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_10 >= __pyx_pybuffernd_phosphoY_B.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 95, __pyx_L1_error)
+  }
+  __pyx_t_11 = 0;
+  __pyx_t_6 = -1;
+  if (__pyx_t_11 < 0) {
+    __pyx_t_11 += __pyx_pybuffernd_phosphoY_Y.diminfo[0].shape;
+    if (unlikely(__pyx_t_11 < 0)) __pyx_t_6 = 0;
+  } else if (unlikely(__pyx_t_11 >= __pyx_pybuffernd_phosphoY_Y.diminfo[0].shape)) __pyx_t_6 = 0;
+  if (unlikely(__pyx_t_6 != -1)) {
+    __Pyx_RaiseBufferIndexError(__pyx_t_6);
+    __PYX_ERR(0, 95, __pyx_L1_error)
+  }
+  __pyx_v_predictions = get_p(__pyx_v_plen, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_peptide.rcbuffer->pybuffer.buf, __pyx_t_2, __pyx_pybuffernd_peptide.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_modpeptide.rcbuffer->pybuffer.buf, __pyx_t_4, __pyx_pybuffernd_modpeptide.diminfo[0].strides))), __pyx_t_3, (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer.buf, __pyx_t_5, __pyx_pybuffernd_phosphoS_B.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer.buf, __pyx_t_7, __pyx_pybuffernd_phosphoS_Y.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer.buf, __pyx_t_8, __pyx_pybuffernd_phosphoT_B.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer.buf, __pyx_t_9, __pyx_pybuffernd_phosphoT_Y.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer.buf, __pyx_t_10, __pyx_pybuffernd_phosphoY_B.diminfo[0].strides))), (&(*__Pyx_BufPtrCContig1d(unsigned short *, __pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer.buf, __pyx_t_11, __pyx_pybuffernd_phosphoY_Y.diminfo[0].strides))));
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":86
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":98
  * 	cdef int i
  * 
  * 	resultB = []             # <<<<<<<<<<<<<<
  * 	resultY = []
  * 	for i in range(plen-1):
  */
-  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 86, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_v_resultB = ((PyObject*)__pyx_t_5);
-  __pyx_t_5 = 0;
+  __pyx_t_12 = PyList_New(0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_12);
+  __pyx_v_resultB = ((PyObject*)__pyx_t_12);
+  __pyx_t_12 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":87
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":99
  * 
  * 	resultB = []
  * 	resultY = []             # <<<<<<<<<<<<<<
  * 	for i in range(plen-1):
  * 		resultB.append(predictions[i])
  */
-  __pyx_t_5 = PyList_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_v_resultY = ((PyObject*)__pyx_t_5);
-  __pyx_t_5 = 0;
+  __pyx_t_12 = PyList_New(0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_12);
+  __pyx_v_resultY = ((PyObject*)__pyx_t_12);
+  __pyx_t_12 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":88
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":100
  * 	resultB = []
  * 	resultY = []
  * 	for i in range(plen-1):             # <<<<<<<<<<<<<<
  * 		resultB.append(predictions[i])
  * 	for i in range(plen-1):
  */
-  __pyx_t_6 = (__pyx_v_plen - 1);
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_6; __pyx_t_3+=1) {
+  __pyx_t_13 = (__pyx_v_plen - 1);
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_13; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":89
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":101
  * 	resultY = []
  * 	for i in range(plen-1):
  * 		resultB.append(predictions[i])             # <<<<<<<<<<<<<<
  * 	for i in range(plen-1):
  * 		resultY.append(predictions[plen-1+i])
  */
-    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_predictions[__pyx_v_i])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 89, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_resultB, __pyx_t_5); if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 89, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_12 = PyFloat_FromDouble((__pyx_v_predictions[__pyx_v_i])); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 101, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_resultB, __pyx_t_12); if (unlikely(__pyx_t_14 == -1)) __PYX_ERR(0, 101, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   }
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":90
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":102
  * 	for i in range(plen-1):
  * 		resultB.append(predictions[i])
  * 	for i in range(plen-1):             # <<<<<<<<<<<<<<
  * 		resultY.append(predictions[plen-1+i])
  * 	return (resultB,resultY)
  */
-  __pyx_t_6 = (__pyx_v_plen - 1);
-  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_6; __pyx_t_3+=1) {
+  __pyx_t_13 = (__pyx_v_plen - 1);
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_13; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "ms2pipfeatures_pyx_HCDphospho.pyx":91
+    /* "ms2pipfeatures_pyx_HCDphospho.pyx":103
  * 		resultB.append(predictions[i])
  * 	for i in range(plen-1):
  * 		resultY.append(predictions[plen-1+i])             # <<<<<<<<<<<<<<
  * 	return (resultB,resultY)
  */
-    __pyx_t_5 = PyFloat_FromDouble((__pyx_v_predictions[((__pyx_v_plen - 1) + __pyx_v_i)])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_resultY, __pyx_t_5); if (unlikely(__pyx_t_7 == -1)) __PYX_ERR(0, 91, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_12 = PyFloat_FromDouble((__pyx_v_predictions[((__pyx_v_plen - 1) + __pyx_v_i)])); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_14 = __Pyx_PyList_Append(__pyx_v_resultY, __pyx_t_12); if (unlikely(__pyx_t_14 == -1)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   }
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":92
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":104
  * 	for i in range(plen-1):
  * 		resultY.append(predictions[plen-1+i])
  * 	return (resultB,resultY)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 92, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_12 = PyTuple_New(2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_12);
   __Pyx_INCREF(__pyx_v_resultB);
   __Pyx_GIVEREF(__pyx_v_resultB);
-  PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_v_resultB);
+  PyTuple_SET_ITEM(__pyx_t_12, 0, __pyx_v_resultB);
   __Pyx_INCREF(__pyx_v_resultY);
   __Pyx_GIVEREF(__pyx_v_resultY);
-  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_v_resultY);
-  __pyx_r = __pyx_t_5;
-  __pyx_t_5 = 0;
+  PyTuple_SET_ITEM(__pyx_t_12, 1, __pyx_v_resultY);
+  __pyx_r = __pyx_t_12;
+  __pyx_t_12 = 0;
   goto __pyx_L0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":81
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":87
  * 	return(b,y,b2,y2)
  * 
- * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):             # <<<<<<<<<<<<<<
- * 	cdef int plen = len(modpeptide)
- * 	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge)
+ * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,             # <<<<<<<<<<<<<<
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
  */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_12);
   { PyObject *__pyx_type, *__pyx_value, *__pyx_tb;
     __Pyx_PyThreadState_declare
     __Pyx_PyThreadState_assign
     __Pyx_ErrFetch(&__pyx_type, &__pyx_value, &__pyx_tb);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer);
+    __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
   __Pyx_AddTraceback("ms2pipfeatures_pyx_HCDphospho.get_predictions", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
@@ -3100,6 +3515,12 @@ static PyObject *__pyx_pf_29ms2pipfeatures_pyx_HCDphospho_10get_predictions(CYTH
   __pyx_L0:;
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_modpeptide.rcbuffer->pybuffer);
   __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_peptide.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoS_B.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoS_Y.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoT_B.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoT_Y.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoY_B.rcbuffer->pybuffer);
+  __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_phosphoY_Y.rcbuffer->pybuffer);
   __pyx_L2:;
   __Pyx_XDECREF(__pyx_v_resultB);
   __Pyx_XDECREF(__pyx_v_resultY);
@@ -5680,6 +6101,12 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_offset, __pyx_k_offset, sizeof(__pyx_k_offset), 0, 0, 1, 1},
   {&__pyx_n_s_peaks, __pyx_k_peaks, sizeof(__pyx_k_peaks), 0, 0, 1, 1},
   {&__pyx_n_s_peptide, __pyx_k_peptide, sizeof(__pyx_k_peptide), 0, 0, 1, 1},
+  {&__pyx_n_s_phosphoS_B, __pyx_k_phosphoS_B, sizeof(__pyx_k_phosphoS_B), 0, 0, 1, 1},
+  {&__pyx_n_s_phosphoS_Y, __pyx_k_phosphoS_Y, sizeof(__pyx_k_phosphoS_Y), 0, 0, 1, 1},
+  {&__pyx_n_s_phosphoT_B, __pyx_k_phosphoT_B, sizeof(__pyx_k_phosphoT_B), 0, 0, 1, 1},
+  {&__pyx_n_s_phosphoT_Y, __pyx_k_phosphoT_Y, sizeof(__pyx_k_phosphoT_Y), 0, 0, 1, 1},
+  {&__pyx_n_s_phosphoY_B, __pyx_k_phosphoY_B, sizeof(__pyx_k_phosphoY_B), 0, 0, 1, 1},
+  {&__pyx_n_s_phosphoY_Y, __pyx_k_phosphoY_Y, sizeof(__pyx_k_phosphoY_Y), 0, 0, 1, 1},
   {&__pyx_n_s_plen, __pyx_k_plen, sizeof(__pyx_k_plen), 0, 0, 1, 1},
   {&__pyx_n_s_pos, __pyx_k_pos, sizeof(__pyx_k_pos), 0, 0, 1, 1},
   {&__pyx_n_s_predictions, __pyx_k_predictions, sizeof(__pyx_k_predictions), 0, 0, 1, 1},
@@ -5698,7 +6125,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 33, __pyx_L1_error)
   __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(1, 218, __pyx_L1_error)
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(1, 799, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(1, 989, __pyx_L1_error)
@@ -5823,62 +6250,62 @@ static int __Pyx_InitCachedConstants(void) {
   /* "ms2pipfeatures_pyx_HCDphospho.pyx":22
  * 	init(amino_masses_fname)
  * 
- * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):             # <<<<<<<<<<<<<<
- * 	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge)
- * 	cdef int i,j,offset
+ * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,             # <<<<<<<<<<<<<<
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
  */
-  __pyx_tuple__12 = PyTuple_Pack(9, __pyx_n_s_peptide, __pyx_n_s_modpeptide, __pyx_n_s_charge, __pyx_n_s_result, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_offset, __pyx_n_s_r, __pyx_n_s_v); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(15, __pyx_n_s_peptide, __pyx_n_s_modpeptide, __pyx_n_s_charge, __pyx_n_s_phosphoS_B, __pyx_n_s_phosphoS_Y, __pyx_n_s_phosphoT_B, __pyx_n_s_phosphoT_Y, __pyx_n_s_phosphoY_B, __pyx_n_s_phosphoY_Y, __pyx_n_s_result, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_offset, __pyx_n_s_r, __pyx_n_s_v); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(3, 0, 9, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_vector, 22, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(9, 0, 15, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_vector, 22, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 22, __pyx_L1_error)
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":35
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":41
  * 	return r
  * 
  * def get_vector_bof_chem(np.ndarray[unsigned short, ndim=1, mode="c"] peptide, int charge):             # <<<<<<<<<<<<<<
  * 	cdef unsigned int* result = get_v_bof_chem(len(peptide),&peptide[0],charge)
  * 	cdef int i,j,offset
  */
-  __pyx_tuple__14 = PyTuple_Pack(8, __pyx_n_s_peptide, __pyx_n_s_charge, __pyx_n_s_result, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_offset, __pyx_n_s_r, __pyx_n_s_v); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(8, __pyx_n_s_peptide, __pyx_n_s_charge, __pyx_n_s_result, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_offset, __pyx_n_s_r, __pyx_n_s_v); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_vector_bof_chem, 35, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(2, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_vector_bof_chem, 41, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 41, __pyx_L1_error)
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":48
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":54
  * 	return r
  * 
  * def get_mzs(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide,float nptm,float cptm):             # <<<<<<<<<<<<<<
  * 	cdef int pos = 0
  * 	cdef int i
  */
-  __pyx_tuple__16 = PyTuple_Pack(8, __pyx_n_s_modpeptide, __pyx_n_s_nptm, __pyx_n_s_cptm, __pyx_n_s_pos, __pyx_n_s_i, __pyx_n_s_result, __pyx_n_s_b, __pyx_n_s_y); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(8, __pyx_n_s_modpeptide, __pyx_n_s_nptm, __pyx_n_s_cptm, __pyx_n_s_pos, __pyx_n_s_i, __pyx_n_s_result, __pyx_n_s_b, __pyx_n_s_y); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_mzs, 48, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_mzs, 54, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(0, 54, __pyx_L1_error)
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":62
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":68
  * 	return(b,y)
  * 
  * def get_targets(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, np.ndarray[float, ndim=1, mode="c"] msms, np.ndarray[float, ndim=1, mode="c"] peaks,float nptm,float cptm, float tolmz):             # <<<<<<<<<<<<<<
  * 	cdef int plen = len(modpeptide)
  * 	cdef float* result = get_t(plen,&modpeptide[0],len(peaks),&msms[0],&peaks[0],nptm,cptm,tolmz)
  */
-  __pyx_tuple__18 = PyTuple_Pack(13, __pyx_n_s_modpeptide, __pyx_n_s_msms, __pyx_n_s_peaks, __pyx_n_s_nptm, __pyx_n_s_cptm, __pyx_n_s_tolmz, __pyx_n_s_plen, __pyx_n_s_result, __pyx_n_s_i, __pyx_n_s_b, __pyx_n_s_y, __pyx_n_s_b2, __pyx_n_s_y2); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(13, __pyx_n_s_modpeptide, __pyx_n_s_msms, __pyx_n_s_peaks, __pyx_n_s_nptm, __pyx_n_s_cptm, __pyx_n_s_tolmz, __pyx_n_s_plen, __pyx_n_s_result, __pyx_n_s_i, __pyx_n_s_b, __pyx_n_s_y, __pyx_n_s_b2, __pyx_n_s_y2); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(6, 0, 13, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_targets, 62, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(6, 0, 13, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_targets, 68, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(0, 68, __pyx_L1_error)
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":81
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":87
  * 	return(b,y,b2,y2)
  * 
- * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):             # <<<<<<<<<<<<<<
- * 	cdef int plen = len(modpeptide)
- * 	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge)
+ * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,             # <<<<<<<<<<<<<<
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
  */
-  __pyx_tuple__20 = PyTuple_Pack(8, __pyx_n_s_peptide, __pyx_n_s_modpeptide, __pyx_n_s_charge, __pyx_n_s_plen, __pyx_n_s_predictions, __pyx_n_s_i, __pyx_n_s_resultB, __pyx_n_s_resultY); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_tuple__20 = PyTuple_Pack(14, __pyx_n_s_peptide, __pyx_n_s_modpeptide, __pyx_n_s_charge, __pyx_n_s_phosphoS_B, __pyx_n_s_phosphoS_Y, __pyx_n_s_phosphoT_B, __pyx_n_s_phosphoT_Y, __pyx_n_s_phosphoY_B, __pyx_n_s_phosphoY_Y, __pyx_n_s_plen, __pyx_n_s_predictions, __pyx_n_s_i, __pyx_n_s_resultB, __pyx_n_s_resultY); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__20);
   __Pyx_GIVEREF(__pyx_tuple__20);
-  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_predictions, 81, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(9, 0, 14, 0, 0, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_home_compomics_Desktop_Ralf_pho, __pyx_n_s_get_predictions, 87, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -6033,61 +6460,61 @@ PyMODINIT_FUNC PyInit_ms2pipfeatures_pyx_HCDphospho(void)
   /* "ms2pipfeatures_pyx_HCDphospho.pyx":22
  * 	init(amino_masses_fname)
  * 
- * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):             # <<<<<<<<<<<<<<
- * 	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge)
- * 	cdef int i,j,offset
+ * def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,             # <<<<<<<<<<<<<<
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+ * np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_3get_vector, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_vector, __pyx_t_1) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":35
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":41
  * 	return r
  * 
  * def get_vector_bof_chem(np.ndarray[unsigned short, ndim=1, mode="c"] peptide, int charge):             # <<<<<<<<<<<<<<
  * 	cdef unsigned int* result = get_v_bof_chem(len(peptide),&peptide[0],charge)
  * 	cdef int i,j,offset
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_5get_vector_bof_chem, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_5get_vector_bof_chem, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_vector_bof_chem, __pyx_t_1) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_vector_bof_chem, __pyx_t_1) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":48
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":54
  * 	return r
  * 
  * def get_mzs(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide,float nptm,float cptm):             # <<<<<<<<<<<<<<
  * 	cdef int pos = 0
  * 	cdef int i
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_7get_mzs, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_7get_mzs, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_mzs, __pyx_t_1) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_mzs, __pyx_t_1) < 0) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":62
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":68
  * 	return(b,y)
  * 
  * def get_targets(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, np.ndarray[float, ndim=1, mode="c"] msms, np.ndarray[float, ndim=1, mode="c"] peaks,float nptm,float cptm, float tolmz):             # <<<<<<<<<<<<<<
  * 	cdef int plen = len(modpeptide)
  * 	cdef float* result = get_t(plen,&modpeptide[0],len(peaks),&msms[0],&peaks[0],nptm,cptm,tolmz)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_9get_targets, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_9get_targets, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_targets, __pyx_t_1) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_targets, __pyx_t_1) < 0) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "ms2pipfeatures_pyx_HCDphospho.pyx":81
+  /* "ms2pipfeatures_pyx_HCDphospho.pyx":87
  * 	return(b,y,b2,y2)
  * 
- * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):             # <<<<<<<<<<<<<<
- * 	cdef int plen = len(modpeptide)
- * 	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge)
+ * def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,             # <<<<<<<<<<<<<<
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+ * 	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_11get_predictions, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_29ms2pipfeatures_pyx_HCDphospho_11get_predictions, NULL, __pyx_n_s_ms2pipfeatures_pyx_HCDphospho); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_predictions, __pyx_t_1) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_get_predictions, __pyx_t_1) < 0) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "ms2pipfeatures_pyx_HCDphospho.pyx":1

@@ -6,9 +6,9 @@ cdef extern from "ms2pipfeatures_c_HCDphospho.c":
 	#uncomment for Omega
 	#void init(char* amino_masses_fname, char* modifications_fname, char* modifications_fname_sptm)
 	void init(char* amino_masses_fname)
-	unsigned int* get_v(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge)
+	unsigned int* get_v(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge, unsigned short* phosphoS_B, unsigned short* phosphoS_Y, unsigned short* phosphoT_B, unsigned short* phosphoT_Y, unsigned short* phosphoY_B, unsigned short* phosphoY_Y)
 	unsigned int* get_v_bof_chem(int peplen, unsigned short* peptide, int charge)
-	float* get_p(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge)
+	float* get_p(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge, unsigned short* phosphoS_B, unsigned short* phosphoS_Y, unsigned short* phosphoT_B, unsigned short* phosphoT_Y, unsigned short* phosphoY_B, unsigned short* phosphoY_Y)
 	float* get_t(int peplen, unsigned short* modpeptide, int numpeaks, float* msms, float* peaks, float nptm, float cptm, float tolmz)
 	float* get_mz(int peplen, unsigned short* modpeptide, float nptm, float cptm)
 
@@ -19,16 +19,22 @@ cdef extern from "ms2pipfeatures_c_HCDphospho.c":
 def ms2pip_init(amino_masses_fname):
 	init(amino_masses_fname)
 
-def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):
-	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge)
+def get_vector(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,
+np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
+np.ndarray[unsigned short, ndim=1, mode="c"] phosphoT_B,
+np.ndarray[unsigned short, ndim=1, mode="c"] phosphoT_Y,
+np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_B,
+np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_Y):
+	cdef unsigned int* result = get_v(len(peptide),&peptide[0],&modpeptide[0],charge,&phosphoS_B[0],&phosphoS_Y[0],&phosphoT_B[0],&phosphoT_Y[0],&phosphoY_B[0],&phosphoY_Y[0])
 	cdef int i,j,offset
 	r = []
 	offset = 0
 	for i in range(len(peptide)-1):
 		v = []
-		for j in range(186):
+		for j in range(192):
 			v.append(result[j+offset])
-		offset+=186
+		offset+=192
 		r.append(v)
 	return r
 
@@ -78,9 +84,15 @@ def get_targets(np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, np.ndar
 		y2.append(result[3*(plen-1)+i])
 	return(b,y,b2,y2)
 
-def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge):
+def get_predictions(np.ndarray[unsigned short, ndim=1, mode="c"] peptide,np.ndarray[unsigned short, ndim=1, mode="c"] modpeptide, charge,
+	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_B,
+	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoS_Y,
+	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoT_B,
+	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoT_Y,
+	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_B,
+	np.ndarray[unsigned short, ndim=1, mode="c"] phosphoY_Y):
 	cdef int plen = len(modpeptide)
-	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge)
+	cdef float* predictions = get_p(plen,&peptide[0],&modpeptide[0],charge,&phosphoS_B[0],&phosphoS_Y[0],&phosphoT_B[0],&phosphoT_Y[0],&phosphoY_B[0],&phosphoY_Y[0])
 	cdef int i
 	
 	resultB = []
