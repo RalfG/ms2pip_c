@@ -43,6 +43,7 @@ def main():
 	  vectors = pd.read_hdf(args.vectors, 'table')
 	else:
 	  print "unsuported feature vector format"
+	  exit(1)
 
 	if args.vectorseval:
 		if args.vectorseval.split('.')[-1] == 'pkl':
@@ -51,8 +52,12 @@ def main():
 		  eval_vectors = pd.read_hdf(args.vectorseval, 'table')
 		else:
 		  print "unsuported feature vector format"
+		  exit(1)
 
+	output_name = ''.join(args.vectors + '_' + args.type)
+	print "Using output filename %s" %output_name
 
+		
 	#vectors = vectors[vectors.charge==2]
 	#eval_vectors = eval_vectors[eval_vectors.charge==2]
 	#vectors = vectors[vectors.peplen==10]
@@ -60,7 +65,7 @@ def main():
 	#vectors = vectors[vectors.ionnumber==5]
 	#eval_vectors = eval_vectors[eval_vectors.ionnumber==5]
 
-	vectors = vectors.sample(4000000,replace=False)
+	#vectors = vectors.sample(n=500000, random_state=1)
 
 	print "%s contains %i feature vectors" % (args.vectors,len(vectors))
 	#print "%s contains %i feature vectors" % (args.vectorseval,len(eval_vectors))
@@ -75,6 +80,7 @@ def main():
 
 	targetsB = vectors.pop("targetsB")
 	targetsY = vectors.pop("targetsY")
+	vectors.drop(['targetsB2', 'targetsY2'], axis=1, inplace=True)
 
 	test_vectors = vectors[psmids.isin(test_psms)]
 	train_vectors = vectors[~psmids.isin(test_psms)]
@@ -143,12 +149,12 @@ def main():
 
 	#train XGBoost
 	#bst = xgb.cv( plst, xtrain, 200,nfold=5,callbacks=[xgb.callback.print_evaluation(show_stdv=False),xgb.callback.early_stop(3)])
-	bst = xgb.train( plst, xtrain, 300, evallist,early_stopping_rounds=10,feval=evalerror,maximize=True)
+	bst = xgb.train( plst, xtrain, 200, evallist,early_stopping_rounds=10,feval=evalerror,maximize=True)
 	#bst = xgb.train( plst, xtrain, 500, evallist,early_stopping_rounds=10)
 	#bst = xgb.train( plst, xtrain, 30, evallist)
 
 	#save model
-	bst.save_model(args.vectors+'.xgboost')
+	#bst.save_model(output_name+'.xgboost')
 
 	#bst = xgb.Booster({'nthread':23}) #init model
 	#bst.load_model(args.vectors+'.xgboost') # load data
@@ -159,7 +165,7 @@ def main():
 	importance = bst.get_fscore()
 	importance = sorted(importance.items(), key=operator.itemgetter(1))
 	ll = []
-	with open("importance.txt","w") as f:
+	with open(output_name+"_importance.txt","w") as f:
 		for feat,n in importance[:]:
 			ll.append(feat)
 			f.write(feat + "\t" + str(n) + '\n')
@@ -167,6 +173,7 @@ def main():
 	sys.stderr.write("[")
 	for l in ll:
 		sys.stderr.write("'"+l+"',")
+	sys.stderr.write("]\n")
 
 	predictions = bst.predict(xtest)
 
@@ -177,7 +184,7 @@ def main():
 	#tmp['charge'] = list(eval_vectors.charge.values)
 	#tmp['peplen'] = list(eval_vectors.peplen.values)
 	#tmp.to_pickle('predictions.pkl')
-	tmp.to_csv('predictions.csv',index=False)
+	tmp.to_csv(output_name+'_predictions.csv',index=False)
 
 	"""
 	for ch in range(8,20):
@@ -202,12 +209,18 @@ def main():
 
 	#dump model to .c code
 
+	os.remove(output_name + '_importance.txt')
+	os.remove(output_name + '_predictions.txt')
+	os.remove(tmp+'.pyx')
+
 def convert_model_to_c(bst,args,numf):
 	#dump model and write .c file
-	bst.dump_model('dump.raw.txt')
+	output_name = ''.join(args.vectors + '_' + args.type)
+
+	bst.dump_model(output_name + '_dump.raw.txt')
 	num_nodes = []
 	mmax = 0
-	with open('dump.raw.txt') as f:
+	with open(output_name + '_dump.raw.txt') as f:
 		for row in f:
 			if row.startswith('booster'):
 				if row.startswith('booster[0]'):
@@ -223,7 +236,7 @@ def convert_model_to_c(bst,args,numf):
 	forest = []
 	tree = None
 	b = 0
-	with open('dump.raw.txt') as f:
+	with open(output_name + '_dump.raw.txt') as f:
 		for row in f:
 			if row.startswith('booster'):
 				if row.startswith('booster[0]'):
@@ -269,7 +282,7 @@ def convert_model_to_c(bst,args,numf):
 			fout.write("\tcdef unsigned short[%i] v = sv\n"%numf)
 			fout.write("\treturn score_%s(v)\n"%args.type)
 
-	#os.remove('dump.raw.txt')
+	os.remove(output_name + '_dump.raw.txt')
 
 
 def tree_to_code(tree,pos,padding):
