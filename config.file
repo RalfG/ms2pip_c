@@ -1,5 +1,6 @@
 frag_method=HCD
 frag_error=0.02
+
 nterm=Ace,42.010565
 cterm=Glyloss,-58
 

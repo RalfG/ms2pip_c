@@ -171,7 +171,7 @@ def main():
 										PTMmap,Ntermmap,Ctermmap,fragmethod,fragerror
 										)))
 		i+=1
-		#some titles might be left
+		# some titles might be left
 		tmp = titles[i*num_spectra_per_cpu:]
 		results.append(myPool.apply_async(process_spectra,args=(
 								i,
@@ -199,7 +199,7 @@ def main():
   			ext = args.vector_file.split('.')[-1]
   			if ext == 'pkl':
 				# print all_vectors.head()
-				all_vectors.to_pickle(args.vector_file+'.pkl')
+				all_vectors.to_pickle(args.vector_file)
   			elif ext == 'h5':
 				all_vectors.to_hdf(args.vector_file, 'table')
     			# 'table' is a tag used to read back the .h5
@@ -215,7 +215,7 @@ def main():
 
 			sys.stdout.write('writing file...\n')
 
-			all_spectra.to_csv(output_name + '_pred_and_emp.csv', index=False)
+			all_spectra.to_csv(output_name + '_' + fragmethod + '_' + str(fragerror) + '_pred_and_emp.csv', index=False)
 
 			# output correlations to boxplots or csv file
 			make_corr_boxplots = False
@@ -240,8 +240,8 @@ def main():
 		# Get only predictions from a pep_file
 		sys.stdout.write('scanning peptide file... ')
 
-		#titles might be ordered from small to large peptides,
-		#shuffling improves parallel speeds
+		# titles might be ordered from small to large peptides,
+		# shuffling improves parallel speeds
 		titles = data.spec_id.tolist()
 		shuffle(titles)
 		num_pep_per_cpu = int(len(titles)/(num_cpu))
@@ -254,7 +254,7 @@ def main():
 		results = []
 		i = 0
 		for i in range(num_cpu-1):
-			#select titles for this worker
+			# select titles for this worker
 			tmp = titles[i*num_pep_per_cpu:(i+1)*num_pep_per_cpu]
 
 			# this commented part of code can be used for debugging by avoiding parallel processing
@@ -266,7 +266,7 @@ def main():
 										data[data.spec_id.isin(tmp)],
 										PTMmap,Ntermmap,Ctermmap,fragmethod
 										)))
-		#some titles might be left
+		# some titles might be left
 		i+=1
 		tmp = titles[i*num_pep_per_cpu:]
 		results.append(myPool.apply_async(process_peptides,args=(
