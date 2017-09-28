@@ -57,7 +57,7 @@ def main():
 	output_name = ''.join(args.vectors + '_' + args.type)
 	print "Using output filename %s" %output_name
 
-		
+
 	#vectors = vectors[vectors.charge==2]
 	#eval_vectors = eval_vectors[eval_vectors.charge==2]
 	#vectors = vectors[vectors.peplen==10]
@@ -136,11 +136,9 @@ def main():
 	         "silent":1,
 	         "eta":1,
 	         #"max_delta_step":12,
-	         "max_depth":8,
+	         "max_depth":15,
 			 "gamma":1,
-			 "min_child_weight":700,
-			 "subsample":1,
-			 "colsample_bytree":1,
+			 "min_child_weight":570,
 			 #"scale_pos_weight":num_neg/num_pos
 			 #"scale_pos_weight":2
 	         }
@@ -149,7 +147,7 @@ def main():
 
 	#train XGBoost
 	#bst = xgb.cv( plst, xtrain, 200,nfold=5,callbacks=[xgb.callback.print_evaluation(show_stdv=False),xgb.callback.early_stop(3)])
-	bst = xgb.train( plst, xtrain, 200, evallist,early_stopping_rounds=10,feval=evalerror,maximize=True)
+	bst = xgb.train( plst, xtrain, 75, evallist,early_stopping_rounds=10,feval=evalerror,maximize=True)
 	#bst = xgb.train( plst, xtrain, 500, evallist,early_stopping_rounds=10)
 	#bst = xgb.train( plst, xtrain, 30, evallist)
 
@@ -210,8 +208,8 @@ def main():
 	#dump model to .c code
 
 	os.remove(output_name + '_importance.txt')
-	os.remove(output_name + '_predictions.txt')
-	os.remove(tmp+'.pyx')
+	os.remove(output_name + '_predictions.csv')
+	#os.remove(tmp + '.pyx')
 
 def convert_model_to_c(bst,args,numf):
 	#dump model and write .c file

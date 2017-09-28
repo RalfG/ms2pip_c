@@ -2,17 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
-//#include "models/vectors_train_h5B_c.c"
-//#include "models/vectors_train_h5Y_c.c"
-
-//#include "models/modelBnew.c"
-//#include "models/modelYnew.c"
-
-#include "models/model_PhosphoExcl_B.c"
-#include "models/model_PhosphoExcl_Y.c"
-
-//#include "models/modelB_Phospho_AF5.c"
-//#include "models/modelY_Phospho_AF5.c"
+#include "models/phospho/PDX000138_Both_CleaveFeat_train_pklB_c.c"
+#include "models/phospho/PDX000138_Both_CleaveFeat_train_pklY_c.c"
 
 float membuffer[10000];
 unsigned int v[30000];
@@ -602,7 +593,10 @@ unsigned int* get_v_bof_chem(int peplen, unsigned short* peptide, int charge)
 }
 
 //compute feature vectors from peptide
-unsigned int* get_v(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge, unsigned short* phosphoS_B, unsigned short* phosphoS_Y, unsigned short* phosphoT_B, unsigned short* phosphoT_Y, unsigned short* phosphoY_B, unsigned short* phosphoY_Y)
+unsigned int* get_v(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge, 
+					unsigned short* phoS_CountB, unsigned short* phoS_CleaveB, unsigned short* phoS_CountY, unsigned short* phoS_CleaveY, 
+					unsigned short* phoT_CountB, unsigned short* phoT_CleaveB, unsigned short* phoT_CountY, unsigned short* phoT_CleaveY, 
+					unsigned short* phoY_CountB, unsigned short* phoY_CleaveB, unsigned short* phoY_CountY, unsigned short* phoY_CleaveY)
 	{
 	int i,j;
 	float mz;
@@ -1122,18 +1116,28 @@ unsigned int* get_v(int peplen, unsigned short* peptide, unsigned short* modpept
 
 		v[fnum++] = charge;
 
-		v[fnum++] = phosphoS_B[i];
-		v[fnum++] = phosphoS_Y[i];
-		v[fnum++] = phosphoT_B[i];
-		v[fnum++] = phosphoT_Y[i];
-		v[fnum++] = phosphoY_B[i];
-		v[fnum++] = phosphoY_Y[i];
+		v[fnum++] = phoS_CountB[i];
+		v[fnum++] = phoS_CleaveB[i];
+		v[fnum++] = phoS_CountY[i];
+		v[fnum++] = phoS_CleaveY[i];
+		v[fnum++] = phoT_CountB[i];
+		v[fnum++] = phoT_CleaveB[i];
+		v[fnum++] = phoT_CountY[i];
+		v[fnum++] = phoT_CleaveY[i];
+		v[fnum++] = phoY_CountB[i];
+		v[fnum++] = phoY_CleaveB[i];
+		v[fnum++] = phoY_CountY[i];
+		v[fnum++] = phoY_CleaveY[i];
+
 	}
 	return v;
 }
 
 //compute feature vector from peptide + predict intensities
-float* get_p(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge, unsigned short* phosphoS_B, unsigned short* phosphoS_Y, unsigned short* phosphoT_B, unsigned short* phosphoT_Y, unsigned short* phosphoY_B, unsigned short* phosphoY_Y)
+float* get_p(int peplen, unsigned short* peptide, unsigned short* modpeptide, int charge, 
+			unsigned short* phoS_CountB, unsigned short* phoS_CleaveB, unsigned short* phoS_CountY, unsigned short* phoS_CleaveY, 
+			unsigned short* phoT_CountB, unsigned short* phoT_CleaveB, unsigned short* phoT_CountY, unsigned short* phoT_CleaveY, 
+			unsigned short* phoY_CountB, unsigned short* phoY_CleaveB, unsigned short* phoY_CountY, unsigned short* phoY_CleaveY)
 	{
 	int i,j;
 	float mz;
@@ -1653,12 +1657,18 @@ float* get_p(int peplen, unsigned short* peptide, unsigned short* modpeptide, in
 
 		v[fnum++] = charge;
 
-		v[fnum++] = phosphoS_B[i];
-		v[fnum++] = phosphoS_Y[i];
-		v[fnum++] = phosphoT_B[i];
-		v[fnum++] = phosphoT_Y[i];
-		v[fnum++] = phosphoY_B[i];
-		v[fnum++] = phosphoY_Y[i];
+		v[fnum++] = phoS_CountB[i];
+		v[fnum++] = phoS_CleaveB[i];
+		v[fnum++] = phoS_CountY[i];
+		v[fnum++] = phoS_CleaveY[i];
+		v[fnum++] = phoT_CountB[i];
+		v[fnum++] = phoT_CleaveB[i];
+		v[fnum++] = phoT_CountY[i];
+		v[fnum++] = phoT_CleaveY[i];
+		v[fnum++] = phoY_CountB[i];
+		v[fnum++] = phoY_CleaveB[i];
+		v[fnum++] = phoY_CountY[i];
+		v[fnum++] = phoY_CleaveY[i];
 
 		predictions[i] = score_B(v);
 		predictions[2*(peplen-1)-i-1] = score_Y(v);
