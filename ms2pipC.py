@@ -376,9 +376,26 @@ def process_peptides(worker_num,args,data,PTMmap,Ntermmap,Ctermmap,fragmethod):
 						modpeptide[int(l[i])-1] = PTMmap[tl[:-1]]
 
 		(b_mz,y_mz) = ms2pipfeatures_pyx.get_mzs(modpeptide,nptm,cptm)
+		
+		if args.p:
+			#Add features for Phospho
+			modpeptide_list = list(modpeptide)
+			for count, cleave, mod, selCl, selCo in [('phoS_CountB', 'phoS_CleaveB', 19, '1:', ':s'), ('phoS_CountY', 'phoS_CleaveY', 19, ':-1', 's:'), 
+													 ('phoT_CountB', 'phoT_CleaveB', 20, '1:', ':s'), ('phoT_CountY', 'phoT_CleaveY', 20, ':-1', 's:'), 
+													 ('phoY_CountB', 'phoY_CleaveB', 21, '1:', ':s'), ('phoY_CountY', 'phoY_CleaveY', 21, ':-1', 's:')]:
+				exec(count + " = np.asarray([modpeptide_list[" + selCo + "].count(" + str(mod) + ") for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))")
+				exec(cleave + " = np.asarray([1 if aa == " + str(mod) + " else 0 for aa in modpeptide_list[" + selCl + "]], dtype=np.dtype('<H'))")
+
+				
 
 		# get ion intensities
-		(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide, modpeptide, ch)
+		if args.p:
+			(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide,modpeptide,ch, 
+																   phoS_CountB,phoS_CleaveB,phoS_CountY,phoS_CleaveY,
+																   phoT_CountB,phoT_CleaveB,phoT_CountY,phoT_CleaveY,
+																   phoY_CountB,phoY_CleaveB,phoY_CountY,phoY_CleaveY)
+		else:
+			(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide,modpeptide,ch)
 		for ii in range(len(resultB)):
 			resultB[ii] = resultB[ii]+0.5 #This still needs to be checked!!!!!!!
 		for ii in range(len(resultY)):
@@ -544,16 +561,19 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 				if args.p:
 					#Add features for Phospho
 					modpeptide_list = list(modpeptide)
-					phosphoS_B = np.asarray([modpeptide_list[:s].count(19) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
-					phosphoS_Y = np.asarray([modpeptide_list[s:].count(19) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
-					phosphoT_B = np.asarray([modpeptide_list[:s].count(20) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
-					phosphoT_Y = np.asarray([modpeptide_list[s:].count(20) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
-					phosphoY_B = np.asarray([modpeptide_list[:s].count(21) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
-					phosphoY_Y = np.asarray([modpeptide_list[s:].count(21) for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))
+					for count, cleave, mod, selCl, selCo in [('phoS_CountB', 'phoS_CleaveB', 19, '1:', ':s'), ('phoS_CountY', 'phoS_CleaveY', 19, ':-1', 's:'), 
+					                                         ('phoT_CountB', 'phoT_CleaveB', 20, '1:', ':s'), ('phoT_CountY', 'phoT_CleaveY', 20, ':-1', 's:'), 
+					                                         ('phoY_CountB', 'phoY_CleaveB', 21, '1:', ':s'), ('phoY_CountY', 'phoY_CleaveY', 21, ':-1', 's:')]:
+					    exec(count + " = np.asarray([modpeptide_list[" + selCo + "].count(" + str(mod) + ") for s in range(1, len(modpeptide_list))], dtype=np.dtype('<H'))")
+					    exec(cleave + " = np.asarray([1 if aa == " + str(mod) + " else 0 for aa in modpeptide_list[" + selCl + "]], dtype=np.dtype('<H'))")
 
 				if args.vector_file:
 					if args.p:
-						tmp = pd.DataFrame(ms2pipfeatures_pyx.get_vector(peptide,modpeptide,charge,phosphoS_B,phosphoS_Y,phosphoT_B,phosphoT_Y,phosphoY_B,phosphoY_Y), columns=cols_n,dtype=np.uint16)
+						tmp = pd.DataFrame(ms2pipfeatures_pyx.get_vector(peptide,modpeptide,charge, 
+																		 phoS_CountB,phoS_CleaveB,phoS_CountY,phoS_CleaveY,
+																		 phoT_CountB,phoT_CleaveB,phoT_CountY,phoT_CleaveY,
+																		 phoY_CountB,phoY_CleaveB,phoY_CountY,phoY_CleaveY), 
+																		columns=cols_n,dtype=np.uint16)
 					else:
 						tmp = pd.DataFrame(ms2pipfeatures_pyx.get_vector(peptide,modpeptide,charge), columns=cols_n,dtype=np.uint16)
 
@@ -567,7 +587,10 @@ def process_spectra(worker_num,args,data, PTMmap,Ntermmap,Ctermmap,fragmethod,fr
 				else:
 					#predict the b- and y-ion intensities from the peptide
 					if args.p:
-						(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide,modpeptide,charge,phosphoS_B,phosphoS_Y,phosphoT_B,phosphoT_Y,phosphoY_B,phosphoY_Y)
+						(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide,modpeptide,charge, 
+																			   phoS_CountB,phoS_CleaveB,phoS_CountY,phoS_CleaveY,
+																			   phoT_CountB,phoT_CleaveB,phoT_CountY,phoT_CleaveY,
+																			   phoY_CountB,phoY_CleaveB,phoY_CountY,phoY_CleaveY)
 					else:
 						(resultB,resultY) = ms2pipfeatures_pyx.get_predictions(peptide,modpeptide,charge)
 
@@ -663,7 +686,9 @@ def get_feature_names(args):
 	names.append("charge")
 
 	if args.p:
-		names.extend(['phosphoS_B','phosphoS_Y','phosphoT_B','phosphoT_Y','phosphoY_B','phosphoY_Y'])
+		names.extend(['phoS_CountB', 'phoS_CleaveB', 'phoS_CountY', 'phoS_CleaveY', 
+					  'phoT_CountB', 'phoT_CleaveB', 'phoT_CountY', 'phoT_CleaveY',
+					  'phoY_CountB', 'phoY_CleaveB', 'phoY_CountY', 'phoY_CleaveY'])
 
 	return names
 
